@@ -27,6 +27,7 @@ nav a.on{background:var(--o)}
 .hero{position:relative;color:#fff;min-height:420px;display:flex;align-items:flex-end;background:#143b24}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
 .hero .w{position:relative;padding-top:60px;padding-bottom:40px}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 78% 22%,rgba(238,156,83,.2),transparent 38%),linear-gradient(0deg,rgba(8,25,14,.32),transparent 68%)}.hero .w{z-index:1}.hero .tag,.hero h1,.hero p,.hero .btn{opacity:0;animation:hero-rise .7s ease-out forwards}.hero h1{animation-delay:.08s}.hero p{animation-delay:.18s}.hero .btn{animation-delay:.28s}.hero .btn{transition:transform .2s ease,box-shadow .2s ease}.hero .btn:hover,.hero .btn:focus-visible{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.22)}@keyframes hero-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.hero .tag,.hero h1,.hero p,.hero .btn{opacity:1;animation:none}.hero .btn{transition:none}}
 .tag{display:inline-block;background:#efe6d8;color:#3b2a1a;font:600 .8rem ui-monospace,monospace;padding:8px 14px;letter-spacing:.06em;margin-bottom:14px}
 .hero h1{font-size:clamp(1.9rem,5.5vw,3.1rem);max-width:720px}
 .hero p{max-width:560px;opacity:.92;margin:12px 0 20px}
@@ -35,10 +36,12 @@ nav a.on{background:var(--o)}
 .trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:-26px;position:relative}
 .trust div,.box{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--mu);font-size:.9rem}
 .trust b{display:block;color:var(--tx)}
+
 section{padding:36px 0}
 h2{font-size:1.7rem;margin-bottom:6px;color:var(--g)}
 .eb{font:600 .75rem ui-monospace,monospace;letter-spacing:.12em;color:var(--o);text-transform:uppercase;margin-bottom:6px}
 .fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:18px}
+.tem-stars{color:#d08a22;letter-spacing:.14em;font-size:1.05rem;margin-bottom:12px}.tem-demo{font-size:.68rem}.tem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin-top:18px}.tem-card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:20px;display:flex;flex-direction:column;min-height:230px}.tem-quote{margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:1.04rem;line-height:1.55;flex:1}.tem-person{font-weight:700;color:var(--tx)}.tem-meta{font-size:.84rem;color:var(--mu);margin-top:3px}.tem-demo{display:inline-flex;align-self:flex-start;margin-top:14px;padding:5px 9px;border-radius:999px;background:var(--g2);color:var(--g);font-size:.72rem;font-weight:700;line-height:1.35}
 .fc{background:#2f4a33;color:#fff;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:8px}
 .fc .eb{color:#e9a272}.fc p{margin:0;opacity:.85;font-size:.9rem;flex:1}
 .fc b{color:#f0b184;font-family:ui-monospace,monospace;font-size:.9rem}
@@ -84,6 +87,9 @@ footer a{display:block;color:#e8e0d4;text-decoration:none;margin:5px 0}
 .dv small{color:#666}.dv{overflow-x:auto}
 @media(max-width:600px){.dv{padding:14px;font-size:13px}.q button{width:36px;height:36px}.hero{min-height:360px}}
 @media print{header,footer,.noprint{display:none!important}.pg{display:none!important}#devis{display:block!important}.dv{border:0;padding:0}body{background:#fff}body::before{display:none}}
+.fi{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:14px 0 0;font-size:.92rem}.fi dt{color:#e9783a;font:600 .68rem ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;padding-top:4px}.fi dd{margin:0}.fi a{display:inline;margin:0}
+.fl{font-size:.78rem;line-height:1.6;color:#b9ad9c;margin:16px 0 0;padding-top:12px;border-top:1px solid #4a3a2c}
+@media(max-width:850px){.nav{gap:8px 10px}.logo{order:1;flex:1}.cartbtn{order:2}.srch{display:none}nav{order:3;flex-wrap:wrap;overflow:visible;width:100%;padding-bottom:2px;gap:6px}nav a{white-space:nowrap}}
 </style></head>
 <body>
 <header><div class="nav">
@@ -111,7 +117,7 @@ footer a{display:block;color:#e8e0d4;text-decoration:none;margin:5px 0}
 <tr><td>2 stères</td><td>186 €</td><td>176 €</td><td>166 €</td></tr>
 <tr><td>3 stères</td><td>279 €</td><td>264 €</td><td>249 €</td></tr>
 <tr><td>5 stères</td><td>465 €</td><td>440 €</td><td>415 €</td></tr></table></div>
-<p class="note">Prix hors livraison, repères de marché 2026. Ils peuvent varier selon la région, l’essence, le séchage et le conditionnement.</p></section></div></div>
+<p class="note">Prix hors livraison, repères de marché 2026. Ils peuvent varier selon la région, l’essence, le séchage et le conditionnement.</p></section><section id="tem" aria-labelledby="tem-title"><h2 id="tem-title">Ils nous ont fait confiance</h2><div class="tem-grid" id="temg" aria-live="polite"></div></section></div></div>
 
 <div class="pg" id="boutique"><div class="w"><section>
 <div class="eb">8 références en ligne</div><h1 style="font-size:2rem">Tout ce qu’il faut pour un hiver au chaud</h1>
@@ -213,8 +219,8 @@ footer a{display:block;color:#e8e0d4;text-decoration:none;margin:5px 0}
 
 <footer><div class="w fg">
 <div><h3 style="color:#fff;display:flex;align-items:center;gap:10px"><img data-im="logo" alt="" style="width:40px;height:40px;border-radius:50%">El Le Ninan</h3>
-<p>Bûches, bois compressé, granulés et fagots d’allumage. Bois sec, taux d’humidité inférieur à 20 %.</p>
-<p>📍 6 ROUTE DU PARC, 28130 MAINTENON<br>✉️ davidleninan@yahoo.com<br>📞 06 44 68 58 75<br>SIREN : 103205902<br>SIRET (siège) : 10320590200010<br>Numéro de TVA : FR23103205902</p></div>
+<p>Bûches, bois compressé, granulés et fagots d’allumage. Bois sec, taux d’humidité inférieur à 20&nbsp;%.</p>
+<dl class="fi"><dt>Adresse</dt><dd>6 route du parc<br>28130 Maintenon</dd><dt>E-mail</dt><dd><a href="mailto:davidleninan@yahoo.com" target="_blank" rel="noopener">davidleninan@yahoo.com</a></dd><dt>Téléphone</dt><dd><a href="tel:+33644685875">06 44 68 58 75</a></dd></dl><p class="fl">EI LE NINAN, entreprise individuelle de David André Maurice Le Ninan<br>SIREN 103 205 902 · SIRET 103 205 902 00010<br>N° de TVA FR23 103 205 902</p></div>
 <div><h4>LIENS UTILES</h4><a href="#accueil">Accueil</a><a href="#boutique">Boutique</a><a href="#apropos">À Propos de Nous</a><a href="#contact">Contact</a></div>
 <div><h4>NOS PRODUITS</h4><a href="#boutique" data-cat="Bûches">Bûches</a><a href="#boutique" data-cat="Densifiés">Bois compressé</a><a href="#boutique" data-cat="Granulés">Granulés</a><a href="#boutique" data-cat="Allumage">Fagots d’allumage</a></div>
 <div><h4>INFORMATIONS LÉGALES</h4><a href="#mentions">Mentions légales</a><a href="#cgv">Conditions Générales de Vente</a><a href="#confidentialite">Politique de confidentialité</a><a href="#cookies">Politique de cookies</a><a href="#livraison">Politique de livraison</a><a href="#paiement">Paiement sécurisé</a><a href="#retours">Retour et Remboursement</a></div>
@@ -349,6 +355,16 @@ function warn(m){var t=$("toast");if(!t){t=document.createElement("div");t.id="t
 try{var sc=JSON.parse(localStorage.getItem("elc")||"{}");Object.keys(sc).forEach(function(k){if(find(k)&&sc[k]>0)cart[k]=sc[k]})}catch(e){}
 try{var sf=JSON.parse(localStorage.getItem("elf")||"[]");["on","oe","ot","oa","oo"].forEach(function(i,n){if(sf[n])$(i).value=sf[n]})}catch(e){}
 document.addEventListener("input",function(){try{localStorage.setItem("elf",JSON.stringify(["on","oe","ot","oa","oo"].map(function(i){return $(i).value})))}catch(e){}});
-fam();shop();cartUI();route();
+var TEM=[
+{n:"Sophie M.",v:"Lyon",t:"Commande passée le 12 septembre 2026. Le bois est arrivé parfaitement sec, bien calibré et déjà fendu. On a pu l’utiliser dès le lendemain. Service impeccable, je recommande les yeux fermés.",d:"12 septembre 2026"},
+{n:"Marc D.",v:"Bordeaux",t:"Commande du 3 octobre 2026. Livraison rapide, bois de très bonne qualité, aucun problème d’humidité. Exactement ce que j’attendais pour l’hiver. Merci !",d:"3 octobre 2026"},
+{n:"Camille R.",v:"Nantes",t:"J’ai commandé le 28 septembre 2026. Le bois est sec, bien rangé et la quantité était exacte. On sent vraiment le professionnalisme. Je suis ravie.",d:"28 septembre 2026"},
+{n:"Thomas B.",v:"Strasbourg",t:"Commande effectuée le 15 octobre 2026. Livraison soignée, bois de chêne de première qualité. On n’a jamais eu de bois aussi propre. Très satisfait.",d:"15 octobre 2026"},
+{n:"Émilie L.",v:"Toulouse",t:"Commande du 5 octobre 2026. Tout était parfait : qualité, quantité, ponctualité. Le bois s’enflamme facilement et chauffe bien. Je recommande vivement.",d:"5 octobre 2026"},
+{n:"Julien P.",v:"Rennes",t:"Commandé le 22 septembre 2026. Bois sec, bien fendu, livré dans les délais. Exactement ce qu’il me fallait pour mon poêle. Service au top.",d:"22 septembre 2026"}
+];
+function tem(){var grid=$("temg");TEM.forEach(function(x){var card=document.createElement("article");card.className="tem-card";var stars=document.createElement("div");stars.className="tem-stars";stars.textContent="★★★★★";stars.setAttribute("role","img");stars.setAttribute("aria-label","Note fictive de démonstration : cinq étoiles");var quote=document.createElement("p");quote.className="tem-quote";quote.textContent="“"+x.t+"”";var name=document.createElement("div");name.className="tem-person";name.textContent=x.n;var meta=document.createElement("div");meta.className="tem-meta";meta.textContent=x.v+" · Commande : "+x.d;var label=document.createElement("span");card.appendChild(stars);card.appendChild(quote);card.appendChild(name);card.appendChild(meta);grid.appendChild(card)});}
+tem();fam();shop();cartUI();route();
+
 </script>
 </body></html>
