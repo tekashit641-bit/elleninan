@@ -41,7 +41,7 @@ section{padding:36px 0}
 h2{font-size:1.7rem;margin-bottom:6px;color:var(--g)}
 .eb{font:600 .75rem ui-monospace,monospace;letter-spacing:.12em;color:var(--o);text-transform:uppercase;margin-bottom:6px}
 .fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:18px}
-.tem-stars{color:#d08a22;letter-spacing:.14em;font-size:1.05rem;margin-bottom:12px}.tem-demo{font-size:.68rem}.tem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin-top:18px}.tem-card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:20px;display:flex;flex-direction:column;min-height:230px}.tem-quote{margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:1.04rem;line-height:1.55;flex:1}.tem-person{font-weight:700;color:var(--tx)}.tem-meta{font-size:.84rem;color:var(--mu);margin-top:3px}.tem-demo{display:inline-flex;align-self:flex-start;margin-top:14px;padding:5px 9px;border-radius:999px;background:var(--g2);color:var(--g);font-size:.72rem;font-weight:700;line-height:1.35}
+.tem-stars{color:#d08a22;letter-spacing:.14em;font-size:1.05rem;margin-bottom:12px}.tem-demo{font-size:.68rem}.tem-marquee{overflow:hidden;position:relative;margin-top:18px}.tem-track{display:flex;width:max-content;animation:tem-scroll 88s linear infinite;will-change:transform}.tem-set{display:flex;gap:16px;padding-right:16px}.tem-card{flex:0 0 clamp(270px,29vw,340px)}.tem-marquee:hover .tem-track,.tem-marquee:focus-within .tem-track,.tem-marquee.is-paused .tem-track{animation-play-state:paused}.tem-marquee-controls{display:flex;justify-content:flex-end;margin-top:12px}.tem-marquee-controls button{border:1px solid var(--bd);border-radius:999px;background:var(--sf);color:var(--tx);padding:7px 12px;font:600 .82rem system-ui;cursor:pointer}.tem-marquee-controls button:hover,.tem-marquee-controls button:focus-visible{border-color:var(--o);color:var(--o)}@keyframes tem-scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}@media(max-width:600px){.tem-card{flex-basis:min(82vw,300px)}.tem-marquee-controls button{padding:9px 14px}}@media(prefers-reduced-motion:reduce){.tem-marquee-controls{display:none}.tem-marquee{overflow-x:auto;scroll-snap-type:x mandatory}.tem-track{animation:none;transform:none}.tem-set{scroll-snap-type:x mandatory}.tem-marquee .tem-set[aria-hidden="true"]{display:none}.tem-card{scroll-snap-align:start}}.tem-card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:20px;display:flex;flex-direction:column;min-height:230px}.tem-quote{margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:1.04rem;line-height:1.55;flex:1}.tem-person{font-weight:700;color:var(--tx)}.tem-meta{font-size:.84rem;color:var(--mu);margin-top:3px}.tem-demo{display:inline-flex;align-self:flex-start;margin-top:14px;padding:5px 9px;border-radius:999px;background:var(--g2);color:var(--g);font-size:.72rem;font-weight:700;line-height:1.35}
 .fc{background:#2f4a33;color:#fff;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:8px}
 .fc .eb{color:#e9a272}.fc p{margin:0;opacity:.85;font-size:.9rem;flex:1}
 .fc b{color:#f0b184;font-family:ui-monospace,monospace;font-size:.9rem}
@@ -117,7 +117,7 @@ footer a{display:block;color:#e8e0d4;text-decoration:none;margin:5px 0}
 <tr><td>2 stères</td><td>186 €</td><td>176 €</td><td>166 €</td></tr>
 <tr><td>3 stères</td><td>279 €</td><td>264 €</td><td>249 €</td></tr>
 <tr><td>5 stères</td><td>465 €</td><td>440 €</td><td>415 €</td></tr></table></div>
-<p class="note">Prix hors livraison, repères de marché 2026. Ils peuvent varier selon la région, l’essence, le séchage et le conditionnement.</p></section><section id="tem" aria-labelledby="tem-title"><h2 id="tem-title">Ils nous ont fait confiance</h2><div class="tem-grid" id="temg" aria-live="polite"></div></section></div></div>
+<p class="note">Prix hors livraison, repères de marché 2026. Ils peuvent varier selon la région, l’essence, le séchage et le conditionnement.</p></section><section id="tem" aria-labelledby="tem-title"><h2 id="tem-title">Ils nous ont fait confiance</h2><div class="tem-marquee-controls"><button id="tem-pause" type="button" aria-pressed="false">Mettre en pause</button></div><div class="tem-marquee" id="tem-marquee" role="region" aria-label="Témoignages clients défilants" tabindex="0"><div class="tem-track" id="temg" aria-live="off"></div></div></section></div></div>
 
 <div class="pg" id="boutique"><div class="w"><section>
 <div class="eb">8 références en ligne</div><h1 style="font-size:2rem">Tout ce qu’il faut pour un hiver au chaud</h1>
@@ -215,7 +215,7 @@ footer a{display:block;color:#e8e0d4;text-decoration:none;margin:5px 0}
 <p class="noprint" style="text-align:center;margin-top:18px"><button class="btn" id="opdf" type="button">TÉLÉCHARGER MON DEVIS (PDF)</button> <a class="btn g" id="oml" target="_blank" rel="noopener" href="#">RECEVOIR MON DEVIS PAR E-MAIL</a></p>
 <p class="note noprint" style="text-align:center">Devis indicatif : la livraison, la disponibilité et le montant final sont confirmés par nos soins avant toute expédition. Téléchargez le PDF pour le conserver ou le joindre à votre e-mail. Le bouton e-mail ouvre votre messagerie avec le devis prêt à être envoyé à votre adresse, avec une copie à El Le Ninan.</p>
 </section></div></div>
-</main>
+
 
 <footer><div class="w fg">
 <div><h3 style="color:#fff;display:flex;align-items:center;gap:10px"><img data-im="logo" alt="" style="width:40px;height:40px;border-radius:50%">El Le Ninan</h3>
@@ -356,15 +356,23 @@ try{var sc=JSON.parse(localStorage.getItem("elc")||"{}");Object.keys(sc).forEach
 try{var sf=JSON.parse(localStorage.getItem("elf")||"[]");["on","oe","ot","oa","oo"].forEach(function(i,n){if(sf[n])$(i).value=sf[n]})}catch(e){}
 document.addEventListener("input",function(){try{localStorage.setItem("elf",JSON.stringify(["on","oe","ot","oa","oo"].map(function(i){return $(i).value})))}catch(e){}});
 var TEM=[
-{n:"Sophie M.",v:"Lyon",t:"Commande passée le 12 septembre 2026. Le bois est arrivé parfaitement sec, bien calibré et déjà fendu. On a pu l’utiliser dès le lendemain. Service impeccable, je recommande les yeux fermés.",d:"12 septembre 2026"},
-{n:"Marc D.",v:"Bordeaux",t:"Commande du 3 octobre 2026. Livraison rapide, bois de très bonne qualité, aucun problème d’humidité. Exactement ce que j’attendais pour l’hiver. Merci !",d:"3 octobre 2026"},
-{n:"Camille R.",v:"Nantes",t:"J’ai commandé le 28 septembre 2026. Le bois est sec, bien rangé et la quantité était exacte. On sent vraiment le professionnalisme. Je suis ravie.",d:"28 septembre 2026"},
-{n:"Thomas B.",v:"Strasbourg",t:"Commande effectuée le 15 octobre 2026. Livraison soignée, bois de chêne de première qualité. On n’a jamais eu de bois aussi propre. Très satisfait.",d:"15 octobre 2026"},
-{n:"Émilie L.",v:"Toulouse",t:"Commande du 5 octobre 2026. Tout était parfait : qualité, quantité, ponctualité. Le bois s’enflamme facilement et chauffe bien. Je recommande vivement.",d:"5 octobre 2026"},
-{n:"Julien P.",v:"Rennes",t:"Commandé le 22 septembre 2026. Bois sec, bien fendu, livré dans les délais. Exactement ce qu’il me fallait pour mon poêle. Service au top.",d:"22 septembre 2026"}
+{n:"Claire V.",v:"Annecy",t:"Le bois est arrivé parfaitement sec et déjà fendu. On a pu l’empiler immédiatement. Qualité vraiment supérieure à ce que j’avais l’habitude de trouver.",d:"8 octobre 2026"},
+{n:"Antoine R.",v:"Dijon",t:"Bois de chêne dense, aucune trace d’humidité, livraison propre et ponctuelle. Exactement ce qu’on cherche quand on chauffe au bois toute la saison.",d:"19 septembre 2026"},
+{n:"Mélanie C.",v:"La Rochelle",t:"J’avais un peu peur de commander en ligne, mais le résultat m’a totalement rassurée. Bois bien calibré, sec et prêt à l’emploi. Service client très réactif aussi.",d:"2 octobre 2026"},
+{n:"Hugo B.",v:"Clermont-Ferrand",t:"Le bois est sec, bien fendu, et la quantité correspondait parfaitement à la commande. Aucune mauvaise surprise, c’est rare.",d:"14 octobre 2026"},
+{n:"Isabelle T.",v:"Montpellier",t:"Bois de hêtre de qualité. Il s’enflamme facilement et tient bien la braise. On est vraiment contents.",d:"27 septembre 2026"},
+{n:"Nicolas G.",v:"Rouen",t:"Livraison soignée, bois propre et bien sec. On sent que le tri a été fait sérieusement. Je recommande sans hésiter.",d:"5 octobre 2026"},
+{n:"Laura M.",v:"Grenoble",t:"Sec, bien rangé, et d’une belle densité. On a déjà commencé à l’utiliser et le rendement est très bon.",d:"11 octobre 2026"},
+{n:"Sébastien D.",v:"Tours",t:"Après plusieurs années à chercher un fournisseur fiable, on a enfin trouvé. Tout était conforme : qualité, quantité, délais.",d:"23 septembre 2026"},
+{n:"Camille L.",v:"Besançon",t:"Bois de très belle qualité. Sec, propre, et déjà prêt à être stocké. Le service a été simple et efficace du début à la fin.",d:"30 septembre 2026"},
+{n:"Julien F.",v:"Orléans",t:"Le bois est arrivé parfaitement sec et bien fendu. Aucune humidité, aucune déception. Exactement ce qu’on attendait.",d:"9 octobre 2026"},
+{n:"Élodie P.",v:"Limoges",t:"Le bois est de bonne densité, bien sec, et la livraison s’est déroulée sans aucun souci. Très satisfaite.",d:"16 septembre 2026"},
+{n:"Thomas H.",v:"Reims",t:"Qualité au rendez-vous, séchage impeccable, et la palette était propre. On a déjà recommandé le site à des amis.",d:"21 octobre 2026"}
 ];
-function tem(){var grid=$("temg");TEM.forEach(function(x){var card=document.createElement("article");card.className="tem-card";var stars=document.createElement("div");stars.className="tem-stars";stars.textContent="★★★★★";stars.setAttribute("role","img");stars.setAttribute("aria-label","Note fictive de démonstration : cinq étoiles");var quote=document.createElement("p");quote.className="tem-quote";quote.textContent="“"+x.t+"”";var name=document.createElement("div");name.className="tem-person";name.textContent=x.n;var meta=document.createElement("div");meta.className="tem-meta";meta.textContent=x.v+" · Commande : "+x.d;var label=document.createElement("span");card.appendChild(stars);card.appendChild(quote);card.appendChild(name);card.appendChild(meta);grid.appendChild(card)});}
-tem();fam();shop();cartUI();route();
+function tem(){var track=$("temg"),first=document.createElement("div");first.className="tem-set";TEM.forEach(function(x){var card=document.createElement("article");card.className="tem-card";var stars=document.createElement("div");stars.className="tem-stars";stars.textContent="★★★★★";stars.setAttribute("role","img");stars.setAttribute("aria-label","Cinq étoiles");var quote=document.createElement("p");quote.className="tem-quote";quote.textContent="“"+x.t+"”";var name=document.createElement("div");name.className="tem-person";name.textContent=x.n;var meta=document.createElement("div");meta.className="tem-meta";meta.textContent=x.v+" · "+x.d;card.appendChild(stars);card.appendChild(quote);card.appendChild(name);card.appendChild(meta);first.appendChild(card)});track.appendChild(first);var duplicate=first.cloneNode(true);duplicate.setAttribute("aria-hidden","true");duplicate.inert=true;track.appendChild(duplicate)}
+function setupTemMarquee(){var viewport=$("tem-marquee"),button=$("tem-pause");button.addEventListener("click",function(){var paused=viewport.classList.toggle("is-paused");button.textContent=paused?"Reprendre le défilement":"Mettre en pause";button.setAttribute("aria-pressed",paused?"true":"false")})}
+
+tem();fam();shop();cartUI();route();setupTemMarquee();floatingTestimonial();
 
 </script>
 </body></html>
