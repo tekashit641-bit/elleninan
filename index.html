@@ -35,7 +35,7 @@ nav a.on{background:var(--o)}
 .btn.g{background:var(--g)}.btn.wa{background:#1a9d4e}
 .trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:-26px;position:relative}
 .trust div,.box{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;color:var(--mu);font-size:.9rem}
-.trust b{display:block;color:var(--tx)}
+.trust b{display:block;color:var(--tx)}.visitor-demo-banner{position:fixed;right:16px;bottom:16px;z-index:18;display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 32px);padding:9px 12px;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-left:4px solid var(--o);border-radius:12px;box-shadow:0 8px 24px rgba(29,42,32,.2)}.visitor-demo-banner strong{font:700 1.05rem ui-monospace,monospace;color:var(--g)}.visitor-demo-banner span{font-weight:600;font-size:.84rem}.visitor-demo-banner small{padding:3px 7px;border-radius:999px;background:var(--g2);color:var(--g);font-size:.68rem;font-weight:700}.visitor-demo-banner button{width:28px;height:28px;flex:0 0 28px;border:1px solid var(--bd);border-radius:50%;background:var(--bg);color:var(--tx);cursor:pointer;font-size:1.1rem;line-height:1}.visitor-demo-banner button:hover,.visitor-demo-banner button:focus-visible{border-color:var(--o);color:var(--o)}.visitor-demo-banner[hidden]{display:none}@media(max-width:600px){.visitor-demo-banner{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));gap:7px;max-width:calc(100vw - 24px);padding:8px 10px}.visitor-demo-banner strong{font-size:.96rem}.visitor-demo-banner span{font-size:.8rem}}
 
 section{padding:36px 0}
 h2{font-size:1.7rem;margin-bottom:6px;color:var(--g)}
@@ -217,6 +217,8 @@ footer a{display:block;color:#e8e0d4;text-decoration:none;margin:5px 0}
 </section></div></div>
 
 
+<aside class="visitor-demo-banner" id="visitor-demo-banner" aria-label="Plus de 1 000 visiteurs déjà"><div><strong>1 000+</strong><span>visiteurs déjà</span></div><button id="visitor-demo-close" type="button" aria-label="Fermer la bannière">×</button></aside>
+
 <footer><div class="w fg">
 <div><h3 style="color:#fff;display:flex;align-items:center;gap:10px"><img data-im="logo" alt="" style="width:40px;height:40px;border-radius:50%">El Le Ninan</h3>
 <p>Bûches, bois compressé, granulés et fagots d’allumage. Bois sec, taux d’humidité inférieur à 20&nbsp;%.</p>
@@ -372,7 +374,7 @@ var TEM=[
 function tem(){var track=$("temg"),first=document.createElement("div");first.className="tem-set";TEM.forEach(function(x){var card=document.createElement("article");card.className="tem-card";var stars=document.createElement("div");stars.className="tem-stars";stars.textContent="★★★★★";stars.setAttribute("role","img");stars.setAttribute("aria-label","Cinq étoiles");var quote=document.createElement("p");quote.className="tem-quote";quote.textContent="“"+x.t+"”";var name=document.createElement("div");name.className="tem-person";name.textContent=x.n;var meta=document.createElement("div");meta.className="tem-meta";meta.textContent=x.v+" · "+x.d;card.appendChild(stars);card.appendChild(quote);card.appendChild(name);card.appendChild(meta);first.appendChild(card)});track.appendChild(first);var duplicate=first.cloneNode(true);duplicate.setAttribute("aria-hidden","true");duplicate.inert=true;track.appendChild(duplicate)}
 function setupTemMarquee(){var viewport=$("tem-marquee"),button=$("tem-pause");button.addEventListener("click",function(){var paused=viewport.classList.toggle("is-paused");button.textContent=paused?"Reprendre le défilement":"Mettre en pause";button.setAttribute("aria-pressed",paused?"true":"false")})}
 
-tem();fam();shop();cartUI();route();setupTemMarquee();floatingTestimonial();
+tem();fam();shop();cartUI();route();setupTemMarquee();$("visitor-demo-close").addEventListener("click",function(){$("visitor-demo-banner").hidden=true});floatingTestimonial();
 
 </script>
 </body></html>
