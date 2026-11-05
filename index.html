@@ -318,7 +318,7 @@ p:has(>#opdf){display:flex;flex-wrap:wrap;justify-content:center;gap:12px}#opdf,
 <p class="noprint"><a href="#commande">← Modifier mes informations</a></p>
 <div class="dv" id="dv"></div>
 <p class="noprint" style="text-align:center;margin-top:18px"><button class="btn" id="opdf" type="button">TÉLÉCHARGER MON DEVIS (PDF)</button> <button class="btn g" id="pay-order" type="button">VALIDER LA COMMANDE</button></p>
-<p class="note noprint" style="text-align:center">Devis indicatif : la disponibilité et le montant final sont confirmés avant expédition. Téléchargez le PDF pour le conserver. Le bouton « Valider la commande » ouvrira le paiement Stripe une fois celui-ci configuré.</p>
+<p class="note noprint" style="text-align:center">Le paiement en ligne porte sur les produits affichés. Les frais et modalités de livraison, s’ils s’appliquent, sont confirmés séparément avant expédition.</p>
 </section></div></div>
 
 
@@ -409,7 +409,7 @@ $("dv").innerHTML='<img class="dv-watermark" src="'+IM.logo+'" alt="" aria-hidde
 window.DVD={ref:ref,dt:dt,nom:$("on").value,adr:$("oa").value,tel:$("ot").value,mail:$("oe").value.trim(),rows:L.map(function(l){var u=r2(l[0].p/1.1);return[String(l[1]),l[0].n+" ("+per(l[0].u)+")",eur(u),eur(r2(u*l[1]))]}),ht:eur(ht),tv:eur(tv),ttc:eur(T),logo:IM.logo}}
 
 $("ovd").addEventListener("click",function(e){if(orderErr()){e.preventDefault();warn(orderErr())}});
-$("pay-order").addEventListener("click",function(){var err=orderErr();if(err){warn(err);return}warn("Le paiement Stripe n’est pas encore raccordé. Il sera disponible à cette étape après configuration du compte marchand.")});
+$("pay-order").addEventListener("click",async function(){var err=orderErr();if(err){warn(err);return}var button=$("pay-order");button.disabled=true;button.textContent="Préparation du paiement…";try{var response=await fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cart:lines().map(function(l){return{id:l[0].id,quantity:l[1]}}),customer:{name:$("on").value.trim(),email:$("oe").value.trim(),phone:$("ot").value.trim(),address:$("oa").value.trim()}})});var data=await response.json();if(!response.ok||!data.url)throw new Error(data.error||"Paiement indisponible.");window.location.assign(data.url)}catch(error){warn(error.message||"Impossible de préparer le paiement. Réessayez plus tard.");button.disabled=false;button.textContent="VALIDER LA COMMANDE"}});
 
 var LEG={
 mentions:["Mentions légales","<p><b>Éditeur du site</b><br>EI LE NINAN, entreprise individuelle de David André Maurice Le Ninan<br>6 route du parc, 28130 Maintenon, France<br>Téléphone : 06 44 68 58 75<br>E-mail : davidleninan@yahoo.com</p><p>SIREN : 103205902<br>SIRET (siège) : 10320590200010<br>N° de TVA : FR23103205902</p><p><b>Directeur de la publication</b><br>David André Maurice Le Ninan</p><p><b>Hébergement</b><br>[À compléter : nom, adresse et contact de l’hébergeur du site]</p><p><b>Propriété intellectuelle</b><br>Les textes, le logo et les visuels de marque du site sont la propriété de l’éditeur. Toute reproduction sans autorisation est interdite.</p>"],
@@ -479,6 +479,8 @@ function tem(){var track=$("temg"),first=document.createElement("div");first.cla
 function setupTemMarquee(){var viewport=$("tem-marquee"),button=$("tem-pause");button.addEventListener("click",function(){var paused=viewport.classList.toggle("is-paused");button.textContent=paused?"Reprendre le défilement":"Mettre en pause";button.setAttribute("aria-pressed",paused?"true":"false")})}
 
 tem();fam();shop();cartUI();route();setupTemMarquee();$("visitor-demo-close").addEventListener("click",function(){$("visitor-demo-banner").hidden=true});floatingTestimonial();
+if(new URLSearchParams(location.search).get("checkout")==="cancel"){warn("Paiement annulé. Votre panier est conservé.");history.replaceState(null,"",location.pathname+location.hash)}
+if(new URLSearchParams(location.search).get("checkout")==="success"){var sid=new URLSearchParams(location.search).get("session_id");history.replaceState(null,"",location.pathname+location.hash);if(sid){fetch("/api/checkout-session?session_id="+encodeURIComponent(sid)).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||"Vérification indisponible.");return d})}).then(function(d){if(d.paymentStatus==="paid"){cart={};cartUI();warn("Paiement confirmé par Stripe. Référence : "+(d.orderReference||"commande"))}else warn("Le paiement est en attente de confirmation.")}).catch(function(){warn("Le paiement a été transmis, mais sa confirmation n’a pas pu être vérifiée. Consultez votre e-mail ou contactez-nous avant de recommencer.")})}}
 
 
 (function(){var sl=document.querySelectorAll(".arch img"),k=0;if(sl.length&&!matchMedia("(prefers-reduced-motion:reduce)").matches)setInterval(function(){sl[k].classList.remove("on");k=(k+1)%sl.length;sl[k].classList.add("on")},5000);
