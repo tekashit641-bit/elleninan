@@ -29,3 +29,20 @@ Dans le Dashboard Stripe, créer un endpoint `https://elleninan.fr/api/stripe-we
 ## Compteurs visiteurs
 
 La route existante `api/visitors.js` conserve ses compteurs Upstash. Configurez `UPSTASH_REDIS_REST_URL` et `UPSTASH_REDIS_REST_TOKEN` dans Vercel comme auparavant.
+
+## Tableau de suivi des commandes
+
+Le tableau privé est disponible à l’adresse `https://elleninan.fr/admin.html`. Il s’appuie sur les Checkout Sessions Stripe déjà créées par le site : aucune base de données supplémentaire n’est nécessaire pour cette première version. Les états de préparation/livraison sont enregistrés dans les métadonnées Stripe de chaque session. Il s’agit d’un suivi interne ; l’état « Annulée » ne déclenche aucun remboursement Stripe.
+
+Dans **Vercel → projet `elleninan` → Settings → Environment Variables**, ajouter ces deux variables pour **Production** :
+
+- `ADMIN_PASSWORD` : mot de passe administrateur unique, long (au moins 16 caractères), à conserver dans un gestionnaire de mots de passe.
+- `ADMIN_SESSION_SECRET` : secret aléatoire d’au moins 32 caractères. Pour en générer un localement avec Node.js : `node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"`. Le saisir directement dans Vercel et ne pas le partager.
+
+Les variables Stripe `STRIPE_SECRET_KEY` et `SITE_URL` ci-dessus doivent aussi être renseignées en Production. La clé Stripe doit appartenir au compte du commerçant et au mode voulu. Le tableau indique clairement « MODE TEST » si Vercel utilise une clé `sk_test_`; avec `sk_live_`, il indique « MODE LIVE ».
+
+Après avoir enregistré les variables, redéployer le site depuis **Deployments → Redeploy** (ou pousser le commit vers GitHub si le projet est relié au dépôt), puis ouvrir `/admin.html` et se connecter avec `ADMIN_PASSWORD`. Utiliser **Déconnexion** à la fin. Ne pas publier ni envoyer le mot de passe ou `ADMIN_SESSION_SECRET` dans GitHub, le HTML, une capture d’écran ou un message.
+
+Le tableau liste les sessions Checkout finalisées correspondant aux références de commande `ELN-` du site. Il affiche le paiement confirmé par Stripe, les coordonnées/livraison saisies et les articles. Les états de préparation ne peuvent progresser que si Stripe confirme le paiement. Les commandes annulées dans Stripe sans paiement confirmé restent visibles comme non réglées ; ce tableau ne permet pas de rembourser. La pagination charge les commandes par lots de 100.
+
+La connexion utilise un cookie HttpOnly signé, limité à 8 heures et SameSite Strict. Le code applique aussi des contrôles d’origine et une limitation sommaire des essais de connexion en mémoire. Pour plusieurs administrateurs, une traçabilité/audit, des notifications e-mail ou un volume élevé, il faudra ajouter une authentification dédiée et une base de données avec contrôle d’accès.
