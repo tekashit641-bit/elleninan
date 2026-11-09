@@ -7,6 +7,23 @@ const PRODUCTS = {
   gp: { name: "Granulés — palette", price: 43000 },
   gs: { name: "Granulés — sac 15 kg", price: 650 },
   fa: { name: "Allumage — filet", price: 500 },
+  cl10: { name: "Bûches compressées classiques — Pack (10 kg)", price: 650 },
+  sn12: { name: "Bûches compressées spécial nuit — Pack (12 kg)", price: 900 },
+  pk10: { name: "Bûches compressées Pini Kay — Pack (10 kg)", price: 650 },
+  pk240: { name: "Bûches compressées Pini Kay — 1/4 palette (240 kg)", price: 13900 },
+  pk480: { name: "Bûches compressées Pini Kay — 1/2 palette (480 kg)", price: 26900 },
+  pk720: { name: "Bûches compressées Pini Kay — 3/4 palette (720 kg)", price: 40900 },
+  pk960: { name: "Bûches compressées Pini Kay — Palette complète (960 kg)", price: 48900 },
+  ruf10: { name: "Briquettes RUF en hêtre — Sac (10 kg)", price: 269 },
+  ruf960: { name: "Briquettes RUF en hêtre — Palette (960 kg)", price: 25900 },
+  pkb10: { name: "Briquettes Pini Kay en chêne — Sac (10 kg)", price: 650 },
+  pkb960: { name: "Briquettes Pini Kay en chêne — Palette (960 kg)", price: 25900 },
+  gl5: { name: "Granulés de bois en lots et palettes — Lot de 5 sacs (75 kg)", price: 2750 },
+  gl10: { name: "Granulés de bois en lots et palettes — Lot de 10 sacs (150 kg)", price: 5490 },
+  gl33: { name: "Granulés de bois en lots et palettes — Demi-palette – 33 sacs (495 kg)", price: 17900 },
+  gl65: { name: "Granulés de bois en lots et palettes — Palette – 65 sacs (975 kg)", price: 35500 },
+  gv1: { name: "Granulés de bois en vrac — Livraison à la tonne (1 tonne)", price: 45000 },
+  gv2: { name: "Granulés de bois en vrac — Livraison de deux tonnes (2 tonnes)", price: 88000 },
 };
 const hits = new Map();
 
