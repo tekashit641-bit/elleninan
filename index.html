@@ -182,17 +182,17 @@ p:has(>#opdf){display:flex;flex-wrap:wrap;justify-content:center;gap:12px}#opdf,
 @media(max-width:600px){.hero2 .btn,.cta .btn,.calc .btn,#cwa,#cml,.box .btn,#vb,#ovd{display:block;width:100%;text-align:center;margin:0 0 10px}.hero2 .btn+.btn{margin-left:0}.calc .btn.g{background:transparent;border:2px solid var(--g);color:var(--g)}.seg{gap:6px}.seg button{padding:12px 4px}.fab{width:50px;height:50px;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px))}.visitor-demo-banner{left:72px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;justify-content:space-between}footer{padding-bottom:88px}.cta .w{flex-direction:column;align-items:stretch}.cta .w>div{width:100%}}
 
 /* Tableau des tarifs (accueil) */
-#accueil .sc{border-radius:16px;box-shadow:0 8px 26px rgba(31,90,53,.14);border:1px solid var(--bd);background:var(--sf)}
-#accueil .sc table{border:0;border-collapse:separate;border-spacing:0;min-width:420px;font-variant-numeric:tabular-nums}
-#accueil .sc th,#accueil .sc td{border-bottom:1px solid #e8eee6;padding:15px 12px;font-size:1.02rem}
-#accueil .sc tr:first-child th{background:var(--g);color:#fff;font-weight:650;letter-spacing:.02em;border-bottom:0;vertical-align:top}
+.sc{border-radius:16px;box-shadow:0 8px 26px rgba(31,90,53,.14);border:1px solid var(--bd);background:var(--sf)}
+.sc table{border:0;border-collapse:separate;border-spacing:0;min-width:420px;font-variant-numeric:tabular-nums}
+.sc th,.sc td{border-bottom:1px solid #e8eee6;padding:15px 12px;font-size:1.02rem}
+.sc tr:first-child th{background:var(--g);color:#fff;font-weight:650;letter-spacing:.02em;border-bottom:0;vertical-align:top}
 
-#accueil .sc td:first-child{text-align:left;font-weight:700;color:var(--g);background:var(--g2);padding-left:18px;white-space:nowrap}
-#accueil .sc tr:nth-child(even) td:not(:first-child){background:#f7faf6}
+.sc td:first-child{text-align:left;font-weight:700;color:var(--g);background:var(--g2);padding-left:18px;white-space:nowrap}
+.sc tr:nth-child(even) td:not(:first-child){background:#f7faf6}
 
-#accueil .sc tr:last-child td{border-bottom:0}
-#accueil .sc tr:not(:first-child):hover td:not(:first-child){background:#fff3e8}
-@media(max-width:600px){#accueil .sc table{min-width:360px}#accueil .sc th,#accueil .sc td{padding:12px 8px;font-size:.95rem}#accueil .sc td:first-child{padding-left:12px}}
+.sc tr:last-child td{border-bottom:0}
+.sc tr:not(:first-child):hover td:not(:first-child){background:#fff3e8}
+@media(max-width:600px){.sc table{min-width:360px}.sc th,.sc td{padding:12px 8px;font-size:.95rem}.sc td:first-child{padding-left:12px}}
 
 /* Nouveaux conditionnements */
 .vl{display:block;font-weight:600;font-size:.82rem;margin:8px 0 0}.vsel{margin-top:4px;padding:9px 10px;font-size:.9rem}
@@ -203,6 +203,64 @@ p:has(>#opdf){display:flex;flex-wrap:wrap;justify-content:center;gap:12px}#opdf,
 .fcard.nophoto{background:linear-gradient(135deg,#1f5a35,#0b2216)}.fph{display:none}
 .card img.fit{object-fit:contain;background:#fff;padding:8px}
 .fcard:nth-child(5){grid-column:1/-1}
+
+/* ===== Finitions modernes (présentation uniquement) ===== */
+:root{--r:16px;--sh1:0 1px 2px rgba(20,40,28,.06),0 4px 14px rgba(20,40,28,.06);--sh2:0 2px 4px rgba(20,40,28,.06),0 14px 34px rgba(20,40,28,.13)}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+::selection{background:#cfe6d6}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--o) 55%,#fff);outline-offset:2px}
+header{background:rgba(255,255,255,.96);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid rgba(29,42,32,.08);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 24px rgba(20,40,28,.05)}
+nav a{border-radius:999px;transition:background .2s,color .2s}
+nav a:hover{background:var(--g2);color:var(--g)}nav a.on{border-radius:0;background:none}
+.btn,.add,.tab,.cartbtn{transition:transform .18s ease,box-shadow .18s ease,background-color .18s,color .18s,border-color .18s}
+.btn{border-radius:12px;letter-spacing:.005em;box-shadow:0 6px 18px rgba(193,98,42,.28)}
+.btn.ghost,.btn.g{box-shadow:none}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(193,98,42,.34)}
+.btn.ghost:hover,.btn.g:hover{box-shadow:0 8px 20px rgba(20,40,28,.16)}
+.btn:active,.add:active{transform:translateY(0)}
+.hero h1{letter-spacing:-.035em;text-wrap:balance}
+.hero p{max-width:34em}
+h1,h2{text-wrap:balance}
+h2{letter-spacing:-.025em}
+.trust{background:linear-gradient(180deg,#f3f7f3,#eef4ef);border-bottom:1px solid rgba(29,42,32,.06)}
+.card{border:1px solid rgba(29,42,32,.07);border-radius:var(--r);box-shadow:var(--sh1);transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.card .cb{padding:18px 18px 20px}
+.card .eb{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.card h3{letter-spacing:-.015em}
+.card .pr{font-weight:700;letter-spacing:-.01em}
+.add{border-radius:11px;letter-spacing:.05em;box-shadow:0 4px 12px rgba(193,98,42,.25)}
+.add:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(193,98,42,.34);filter:brightness(1.05)}
+.fcard{border-radius:20px;box-shadow:var(--sh1);transition:transform .3s ease,box-shadow .3s ease}
+.fcard:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.tabs{gap:8px}
+.tab{border:1px solid rgba(29,42,32,.12);background:#fff;box-shadow:0 1px 2px rgba(20,40,28,.05);font-weight:600}
+.tab:hover{border-color:var(--g);transform:translateY(-1px)}
+.tab.on{background:var(--g);border-color:var(--g);color:#fff;box-shadow:0 6px 16px rgba(31,90,53,.3)}
+.tab.on i{color:#cfe6d6}
+.stats div{background:#fff;border:1px solid rgba(29,42,32,.08);border-radius:var(--r);box-shadow:var(--sh1);padding:18px 20px;color:var(--mu)}
+.stats b{font:800 1.9rem "Bricolage Grotesque",Figtree,system-ui,sans-serif;letter-spacing:-.03em;color:var(--g);margin-bottom:2px}
+#boutique .stats{grid-template-columns:repeat(auto-fit,minmax(190px,260px))}
+input,select,textarea{border-radius:11px;border:1px solid #cfd8cf;background:#fff;transition:border-color .18s,box-shadow .18s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--g);box-shadow:0 0 0 4px rgba(31,90,53,.14)}
+.tem-card{border:1px solid rgba(29,42,32,.07);box-shadow:var(--sh1)}
+.cartbtn{box-shadow:0 6px 16px rgba(20,40,28,.22)}
+.cartbtn:hover{transform:translateY(-1px)}
+table{border-radius:14px}
+footer{box-shadow:0 -1px 0 rgba(255,255,255,.04) inset}
+footer a{transition:color .15s,opacity .15s}
+footer a:hover{color:#fff}
+.pay-logos img{box-shadow:0 1px 3px rgba(0,0,0,.18);transition:transform .15s}
+.pay-logos img:hover{transform:translateY(-2px)}
+@media(max-width:600px){#boutique .stats{grid-template-columns:1fr 1fr;gap:10px}.stats div{padding:13px 14px}.stats b{font-size:1.5rem}.card:hover,.fcard:hover{transform:none}.btn{border-radius:11px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.fcard,.btn,.add,.tab{transition:none}.card:hover,.fcard:hover,.btn:hover,.add:hover{transform:none}}
+
+#ck-banner{position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;max-width:620px;margin:0 auto;background:#fff;color:#2b2118;border:1px solid var(--bd);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:16px 18px;font-size:.92rem;line-height:1.45}
+#ck-banner[hidden]{display:none}
+#ck-banner p{margin:0 0 12px}#ck-banner a{color:var(--g);text-decoration:underline;cursor:pointer}
+#ck-banner .ckb{display:flex;gap:10px;flex-wrap:wrap}
+#ck-banner button{flex:1 1 140px;padding:12px 14px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer;border:2px solid var(--g);background:#fff;color:var(--g)}
+#ck-banner button.ok{background:var(--g);color:#fff}
 </style></head>
 <body>
 <header><div class="nav">
@@ -239,7 +297,7 @@ p:has(>#opdf){display:flex;flex-wrap:wrap;justify-content:center;gap:12px}#opdf,
 <tr><td>1 stère</td><td>93 €</td><td>88 €</td><td>83 €</td></tr>
 <tr><td>2 stères</td><td>186 €</td><td>176 €</td><td>166 €</td></tr>
 <tr><td>3 stères</td><td>279 €</td><td>264 €</td><td>249 €</td></tr>
-<tr><td>5 stères</td><td>465 €</td><td>440 €</td><td>415 €</td></tr></table></div><p class="note">Prix hors livraison, repères de marché 2026. Ils varient selon la région, l’essence, le séchage et le conditionnement.</p></div></div></div>
+<tr><td>5 stères</td><td>465 €</td><td>440 €</td><td>415 €</td></tr></table></div></div></div></div>
 <div class="blk"><div class="w"><h2>Commander en trois étapes</h2><div class="steps">
 <div><b>1</b><h3>Composez votre panier</h3><p>Choisissez vos produits et vos quantités dans la boutique.</p></div>
 <div><b>2</b><h3>Recevez votre devis</h3><p>Renseignez vos coordonnées : le devis se génère et se télécharge en PDF.</p></div>
@@ -250,9 +308,9 @@ p:has(>#opdf){display:flex;flex-wrap:wrap;justify-content:center;gap:12px}#opdf,
 
 <div class="pg" id="boutique"><div class="w"><section>
 <div class="eb" id="eb-ref">15 références en ligne</div><h1>Tout ce qu’il faut pour un hiver au chaud</h1>
-<div class="stats"><div><b id="st-ref">15</b>Références</div><div><b id="st-fam">5</b>Familles de produits</div><div><b>Sur devis</b>Livraison selon votre zone</div></div><div class="unit-choice"><label for="wood-unit-shop">Unité pour les bûches</label><select id="wood-unit-shop"><option value="stère">Stère</option><option value="m³">m³ empilé</option></select><span class="note">Le volume en m³ varie selon la longueur des bûches.</span></div>
+<div class="stats"><div><b id="st-ref">15</b>Références</div><div><b id="st-fam">5</b>Familles de produits</div></div><div class="unit-choice"><label for="wood-unit-shop">Unité pour les bûches</label><select id="wood-unit-shop"><option value="stère">Stère</option><option value="m³">m³ empilé</option></select><span class="note">Le volume en m³ varie selon la longueur des bûches.</span></div>
 <div class="tabs" id="tabs"></div><p class="note" id="rc"></p><div class="grid" id="grid"></div>
-<p class="note">Prix en euros TTC, hors livraison. Montant confirmé sur devis, disponibilité à confirmer avant validation.</p></section></div></div>
+</section></div></div>
 
 <div class="pg" id="apropos"><div class="w"><section>
 <div class="eb">À propos</div><h1>Le bois qu’on choisirait pour se chauffer soi-même</h1>
@@ -269,7 +327,7 @@ p:has(>#opdf){display:flex;flex-wrap:wrap;justify-content:center;gap:12px}#opdf,
 <tr><td>1 stère</td><td>93 €</td><td>88 €</td><td>83 €</td></tr>
 <tr><td>2 stères</td><td>186 €</td><td>176 €</td><td>166 €</td></tr>
 <tr><td>3 stères</td><td>279 €</td><td>264 €</td><td>249 €</td></tr>
-<tr><td>5 stères</td><td>465 €</td><td>440 €</td><td>415 €</td></tr></table></div><p class="note">Prix hors livraison, repères de marché 2026. Ils varient selon la région, l’essence, le séchage et le conditionnement.</p></div></div></div>
+<tr><td>5 stères</td><td>465 €</td><td>440 €</td><td>415 €</td></tr></table></div></div></div></div>
 <div class="blk"><div class="w"><h2>Commander en trois étapes</h2><div class="steps">
 <div><b>1</b><h3>Composez votre panier</h3><p>Choisissez vos produits et vos quantités dans la boutique.</p></div>
 <div><b>2</b><h3>Recevez votre devis</h3><p>Renseignez vos coordonnées : le devis se génère et se télécharge en PDF.</p></div>
@@ -370,7 +428,7 @@ p:has(>#opdf){display:flex;flex-wrap:wrap;justify-content:center;gap:12px}#opdf,
 <dl class="fi"><dt>Adresse</dt><dd>6 route du parc<br>28130 Maintenon</dd><dt>E-mail</dt><dd><a href="mailto:chauffage@elleninan.fr" target="_blank" rel="noopener">chauffage@elleninan.fr</a></dd><dt>Téléphone</dt><dd><a href="tel:+33644685875">06 44 68 58 75</a></dd></dl><p class="fl">EI LE NINAN, entreprise individuelle de David André Maurice Le Ninan<br>SIREN 103 205 902 · SIRET 103 205 902 00010<br>N° de TVA FR23 103 205 902</p></div>
 <div><h4>LIENS UTILES</h4><a href="#accueil">Accueil</a><a href="#boutique">Boutique</a><a href="#apropos">À Propos de Nous</a><a href="#contact">Contact</a></div>
 <div><h4>NOS PRODUITS</h4><a href="#boutique" data-cat="Bûches">Bûches</a><a href="#boutique" data-cat="Densifiés">Bois compressé</a><a href="#boutique" data-cat="Briquettes">Briquettes de bois</a><a href="#boutique" data-cat="Granulés">Granulés</a><a href="#boutique" data-cat="Allumage">Fagots d’allumage</a></div>
-<div><h4>INFORMATIONS LÉGALES</h4><a href="#mentions">Mentions légales</a><a href="#cgv">Conditions Générales de Vente</a><a href="#confidentialite">Politique de confidentialité</a><a href="#cookies">Politique de cookies</a><a href="#livraison">Politique de livraison</a><a href="#paiement">Paiement sécurisé</a><a href="#retours">Retour et Remboursement</a></div>
+<div><h4>INFORMATIONS LÉGALES</h4><a href="#mentions">Mentions légales</a><a href="#cgv">Conditions Générales de Vente</a><a href="#confidentialite">Politique de confidentialité</a><a href="#cookies">Politique de cookies</a><a role="button" tabindex="0" data-ck style="cursor:pointer">Gérer les cookies</a><a href="#livraison">Politique de livraison</a><a href="#paiement">Paiement sécurisé</a><a href="#retours">Retour et Remboursement</a></div>
 </div>
 <div class="w" style="margin-top:22px;padding-top:16px;border-top:1px solid #4a3a2c"><a style="display:inline-block;margin-right:18px" href="https://www.instagram.com/el_le_ninan_bois_de_chauffage" target="_blank" rel="noopener">Instagram</a><a style="display:inline-block;margin-right:18px" href="https://www.facebook.com/profile.php?id=61586931092546" target="_blank" rel="noopener">Facebook</a><a style="display:inline-block;margin-right:18px" href="https://vm.tiktok.com/ZN8ULU5UD/" target="_blank" rel="noopener">TikTok</a><a style="display:inline-block" href="https://wa.me/c/33644685875" target="_blank" rel="noopener">Catalogue WhatsApp</a></div>
 <style>.pay-foot-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;margin-top:16px;margin-bottom:64px;padding-top:16px;border-top:1px solid #4a3a2c;font-size:.85rem;opacity:.95;text-align:center}.pay-foot-row .pay-logos{margin:0;gap:6px}.pay-foot-row .pay-logos img{height:24px}@media(max-width:600px){.pay-foot-row{flex-direction:column;gap:8px}.pay-foot-row .pay-logos{justify-content:center}.pay-foot-row .pay-logos img{height:22px}}</style>
@@ -408,7 +466,7 @@ function shown(){var out=[],seen={};P.forEach(function(p,ix){if(!p.g)out.push({k
 function vinfo(v){return 'Conditionnement : <b>'+v.l+'</b> · Poids : <b>'+v.w+'</b>'}
 function vprice(v){return (v.old?'<s class="vold">'+eur(v.old)+'</s>':'')+'<span class="vp">'+eur(v.p)+'</span> <small>TTC</small>'}
 function gtext(g,v){return g.vrac?VRACTXT:(v.chk?PALTXT:DEFTXT)}
-function groupCard(g){var v=g.v[0],img=g.i?'<img'+(g.fit?' class="fit"':'')+' src="'+IM[g.i]+'" alt="'+g.n+'">':'<div class="ph">'+g.e+'<small class="vph">Photo à venir</small></div>',sel=g.v.length>1?'<label class="vl">Conditionnement<select class="vsel" aria-label="Conditionnement : '+g.n+'">'+g.v.map(function(x){return '<option value="'+x.id+'">'+x.l+' · '+x.w+' · '+eur(x.p)+'</option>'}).join("")+'</select></label>':'';return '<div class="card" data-g="'+g.g+'">'+img+'<div class="cb"><div class="eb">'+catName(g.c)+'</div><h3 style="font-size:1.05rem">'+g.n+'</h3><p>'+g.d+'</p>'+sel+'<div class="vinfo">'+vinfo(v)+'</div><div class="pr"><span class="promo">Prix promotionnel</span> '+vprice(v)+'</div><p class="note vchk">'+gtext(g,v)+'</p><button class="add" data-a="'+v.id+'">Ajouter au panier</button></div></div>'}
+function groupCard(g){var v=g.v[0],img=g.i?'<img'+(g.fit?' class="fit"':'')+' src="'+IM[g.i]+'" alt="'+g.n+'">':'<div class="ph">'+g.e+'<small class="vph">Photo à venir</small></div>',sel=g.v.length>1?'<label class="vl">Conditionnement<select class="vsel" aria-label="Conditionnement : '+g.n+'">'+g.v.map(function(x){return '<option value="'+x.id+'">'+x.l+' · '+x.w+' · '+eur(x.p)+'</option>'}).join("")+'</select></label>':'';return '<div class="card" data-g="'+g.g+'">'+img+'<div class="cb"><div class="eb">'+catName(g.c)+'</div><h3 style="font-size:1.05rem">'+g.n+'</h3><p>'+g.d+'</p>'+sel+'<div class="vinfo">'+vinfo(v)+'</div><div class="pr"><span class="promo">Prix promotionnel</span> '+vprice(v)+'</div><button class="add" data-a="'+v.id+'">Ajouter au panier</button></div></div>'}
 function legacyCard(p){var u=p.conv?woodUnit:p.u,price=priceFor(p,u);return '<div class="card">'+(p.i?'<img src="'+IM[p.i]+'" alt="'+p.n+'">':'<div class="ph">'+p.e+'</div>')+'<div class="cb"><div class="eb">'+catName(p.c)+'</div><h3 style="font-size:1.05rem">'+p.n+'</h3><p>'+p.d+'</p><div class="pr">'+(p.f?'<small>dès </small>':'')+eur(price)+' <small>/ '+u+'</small></div><button class="add" data-a="'+p.id+'">Ajouter au panier</button></div></div>'}
 function shop(){var S=shown();
 $("tabs").innerHTML=["Tout"].concat(CATS).map(function(c){var n=c==="Tout"?S.length:S.filter(function(x){return x.c===c}).length;return '<button class="tab'+(c===cat?' on':'')+'" data-t="'+c+'">'+catName(c)+'<i>'+n+'</i></button>'}).join("");
@@ -429,14 +487,14 @@ var c="Demande : "+$("cs").value+"\nNom : "+$("cn").value+"\nTéléphone : "+$("
 $("cwa").href="https://wa.me/33644685875?text="+enc(c);$("cml").href="mailto:chauffage@elleninan.fr?subject="+enc("Contact El Le Ninan : "+$("cs").value)+"&body="+enc(c)}
 function route(){var h=(location.hash||"#accueil").slice(1);if(!document.getElementById(h)||!document.getElementById(h).classList.contains("pg"))h="accueil";
 document.querySelectorAll(".pg").forEach(function(e){e.classList.toggle("on",e.id===h)});
-document.querySelectorAll("nav a").forEach(function(a){a.classList.toggle("on",a.dataset.p===h)});if(h==="devis")renderDevis();window.scrollTo(0,0)}
+document.querySelectorAll("nav a").forEach(function(a){a.classList.toggle("on",a.dataset.p===h)});if(h==="devis")renderDevis();window.scrollTo(0,0);if(typeof trkPage==="function")trkPage(h)}
 document.addEventListener("click",function(e){var t=e.target.closest("[data-t],[data-a],[data-p],[data-m],[data-d],[data-cat],#cb,#owa,#pay-order,#cwa,#cml,#vb");if(!t)return;var d=t.dataset;
 if(d.t){cat=d.t;shop()}
 else if(d.cat){cat=d.cat;shop();if(!t.getAttribute("href"))location.hash="boutique"}
-else if(d.a){cart[d.a]=(cart[d.a]||0)+1;cartUI();t.textContent="Ajouté ✓";setTimeout(function(){t.textContent="Ajouter au panier"},900)}
+else if(d.a){cart[d.a]=(cart[d.a]||0)+1;trkAdd(d.a,1);cartUI();t.textContent="Ajouté ✓";setTimeout(function(){t.textContent="Ajouter au panier"},900)}
 else if(d.m){cart[d.m]--;if(cart[d.m]<1)delete cart[d.m];cartUI()}
 else if(d.d){delete cart[d.d];cartUI()}
-else if(d.p&&t.tagName==="BUTTON"){cart[d.p]++;cartUI()}
+else if(d.p&&t.tagName==="BUTTON"){cart[d.p]++;trkAdd(d.p,1);cartUI()}
 else if(t.id==="cb")location.hash="panier";
 else if(t.id==="vb"){if(!lines().length){e.preventDefault();warn("Votre panier est vide : ajoutez d’abord des produits.")}}
 else if(t.id==="owa"||t.id==="pay-order"){if(orderErr()){e.preventDefault();warn(orderErr())}}
@@ -473,16 +531,16 @@ function loadStripe(){if(typeof Stripe==="function")return Promise.resolve();if(
 window.addEventListener("load",function(){setTimeout(function(){loadStripe().catch(function(){})},1500)});
 var embedded=null,stripeInstance=null;
 function closeEmbed(){if(embedded){try{embedded.destroy()}catch(e){}embedded=null}var box=$("pay-embed");if(box)box.hidden=true;var ob=$("opdf");if(ob&&ob.parentNode)ob.parentNode.style.display="";var pb=$("pay-order");pb.disabled=false;pb.textContent="VALIDER LA COMMANDE"}
-$("pay-order").addEventListener("click",async function(){var err=orderErr();if(err){warn(err);return}var button=$("pay-order");button.disabled=true;button.textContent="Préparation du paiement…";try{await loadStripe();var payload={cart:lines().map(function(l){return{id:l[0].id,quantity:l[1],unit:l[0].conv?l[2]:undefined}}),customer:{name:$("on").value.trim(),email:$("oe").value.trim(),phone:$("ot").value.trim(),address:$("oa").value.trim()}};var responses=await Promise.all([fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),fetch("/api/stripe-config")]);var data=await responses[0].json().catch(function(){return{}});var config=await responses[1].json().catch(function(){return{}});if(!responses[0].ok||!data.clientSecret)throw new Error(data.error||"Paiement indisponible.");if(!responses[1].ok||!config.publishableKey)throw new Error(config.error||"Paiement indisponible.");if(embedded){try{embedded.destroy()}catch(e){}embedded=null}stripeInstance=stripeInstance||Stripe(config.publishableKey);embedded=await stripeInstance.initEmbeddedCheckout({clientSecret:data.clientSecret});$("opdf").parentNode.style.display="none";$("pay-embed").hidden=false;embedded.mount("#checkout");$("pay-embed").scrollIntoView({behavior:"smooth",block:"start"})}catch(error){warn(error.message||"Impossible de préparer le paiement. Réessayez plus tard.");closeEmbed()}});
+$("pay-order").addEventListener("click",async function(){var err=orderErr();if(err){warn(err);return}trkCheckout();var button=$("pay-order");button.disabled=true;button.textContent="Préparation du paiement…";try{await loadStripe();var payload={cart:lines().map(function(l){return{id:l[0].id,quantity:l[1],unit:l[0].conv?l[2]:undefined}}),customer:{name:$("on").value.trim(),email:$("oe").value.trim(),phone:$("ot").value.trim(),address:$("oa").value.trim()}};var responses=await Promise.all([fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),fetch("/api/stripe-config")]);var data=await responses[0].json().catch(function(){return{}});var config=await responses[1].json().catch(function(){return{}});if(!responses[0].ok||!data.clientSecret)throw new Error(data.error||"Paiement indisponible.");if(!responses[1].ok||!config.publishableKey)throw new Error(config.error||"Paiement indisponible.");if(embedded){try{embedded.destroy()}catch(e){}embedded=null}stripeInstance=stripeInstance||Stripe(config.publishableKey);embedded=await stripeInstance.initEmbeddedCheckout({clientSecret:data.clientSecret});$("opdf").parentNode.style.display="none";$("pay-embed").hidden=false;embedded.mount("#checkout");$("pay-embed").scrollIntoView({behavior:"smooth",block:"start"})}catch(error){warn(error.message||"Impossible de préparer le paiement. Réessayez plus tard.");closeEmbed()}});
 $("pay-cancel").addEventListener("click",function(){closeEmbed();warn("Paiement annulé. Votre panier est conservé.")});
 window.addEventListener("hashchange",closeEmbed);
-document.addEventListener("change",function(e){var s=e.target;if(!s.classList||!s.classList.contains("vsel"))return;var card=s.closest(".card"),g=NEWP.filter(function(x){return x.g===card.dataset.g})[0],v=g.v.filter(function(x){return x.id===s.value})[0];card.querySelector(".vinfo").innerHTML=vinfo(v);card.querySelector(".pr").innerHTML='<span class="promo">Prix promotionnel</span> '+vprice(v);card.querySelector(".vchk").textContent=gtext(g,v);card.querySelector(".add").dataset.a=v.id});
+document.addEventListener("change",function(e){var s=e.target;if(!s.classList||!s.classList.contains("vsel"))return;var card=s.closest(".card"),g=NEWP.filter(function(x){return x.g===card.dataset.g})[0],v=g.v.filter(function(x){return x.id===s.value})[0];card.querySelector(".vinfo").innerHTML=vinfo(v);card.querySelector(".pr").innerHTML='<span class="promo">Prix promotionnel</span> '+vprice(v);card.querySelector(".add").dataset.a=v.id});
 document.addEventListener("click",function(e){if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;var l=e.target.closest&&e.target.closest('a[href^="#"]');if(!l||l.target==="_blank")return;var id=(l.getAttribute("href")||"").slice(1),pg=id&&document.getElementById(id);if(!pg||!pg.classList.contains("pg"))return;e.preventDefault();if(location.hash!=="#"+id){try{history.pushState(null,"","#"+id)}catch(_){try{location.hash=id}catch(__){}}}closeEmbed();route()});
 
 var LEG={
 mentions:["Mentions légales","<p><b>Éditeur du site</b><br>EI LE NINAN, entreprise individuelle de David André Maurice Le Ninan<br>6 route du parc, 28130 Maintenon, France<br>Téléphone : 06 44 68 58 75<br>E-mail : chauffage@elleninan.fr</p><p>SIREN : 103205902<br>SIRET (siège) : 10320590200010<br>N° de TVA : FR23103205902</p><p><b>Directeur de la publication</b><br>David André Maurice Le Ninan</p><p><b>Hébergement</b><br>[À compléter : nom, adresse et contact de l’hébergeur du site]</p><p><b>Propriété intellectuelle</b><br>Les textes, le logo et les visuels de marque du site sont la propriété de l’éditeur. Toute reproduction sans autorisation est interdite.</p>"],
-confidentialite:["Politique de confidentialité","<p>Les informations saisies dans les formulaires du site (nom, adresse, téléphone, e-mail, contenu de la commande) servent uniquement à préparer votre devis, traiter votre commande, la livrer et vous répondre.</p><p>Le site ne stocke pas ces informations : elles sont transmises au Vendeur par WhatsApp ou par e-mail, à votre initiative. Elles ne sont pas cédées à des tiers, hors prestataires nécessaires à la livraison, et sont conservées le temps nécessaire au traitement de la commande et au respect des obligations légales et comptables.</p><p>Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition. Pour l’exercer, écrivez à chauffage@elleninan.fr. Vous pouvez aussi saisir la CNIL (cnil.fr).</p>"],
-cookies:["Politique de cookies","<p>Ce site n’utilise pas de cookies de suivi, de mesure d’audience ni de publicité.</p><p>Les liens vers WhatsApp, Instagram, Facebook et TikTok ouvrent des services tiers qui ont leurs propres règles en matière de cookies et de données personnelles.</p><p>[À mettre à jour si des outils de mesure d’audience ou de publicité sont ajoutés au site.]</p>"],
+confidentialite:["Politique de confidentialité","<p>Les informations saisies dans les formulaires du site (nom, adresse, téléphone, e-mail, contenu de la commande) servent uniquement à préparer votre devis, traiter votre commande, la livrer et vous répondre.</p><p>Le site ne stocke pas ces informations : elles sont transmises au Vendeur par WhatsApp ou par e-mail, à votre initiative. Elles ne sont pas cédées à des tiers, hors prestataires nécessaires à la livraison, et sont conservées le temps nécessaire au traitement de la commande et au respect des obligations légales et comptables.</p><p>Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition. Pour l’exercer, écrivez à chauffage@elleninan.fr. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p>Si vous acceptez le Pixel Meta, Meta Platforms Ireland Ltd reçoit des données de navigation (pages consultées, produits ajoutés au panier, montant des commandes) pour la mesure et le ciblage publicitaires. Voir la politique de cookies pour retirer votre consentement.</p>"],
+cookies:["Politique de cookies","<p>Ce site utilise le Pixel Meta (Facebook), un traceur publicitaire, uniquement si vous l’acceptez via le bandeau affiché à votre première visite. Il mesure les pages vues, les ajouts au panier et les commandes afin d’évaluer et d’améliorer nos publicités sur Facebook et Instagram. Tant que vous ne l’acceptez pas, aucun traceur publicitaire n’est chargé.</p><p>Vous pouvez modifier votre choix à tout moment avec le lien « Gérer les cookies » en bas de page. Votre choix est conservé sur votre appareil pendant 6 mois.</p><p>Les liens vers WhatsApp, Instagram, Facebook et TikTok ouvrent des services tiers qui ont leurs propres règles en matière de cookies et de données personnelles.</p>"],
 livraison:["Politique de livraison","<p>La livraison s’effectue à l’adresse indiquée par le Client, dans la zone desservie par le Vendeur. Offre de bienvenue : la livraison est offerte pour votre première commande. Cette offre est soumise à la zone de livraison desservie et aux conditions d’accès. Pour toute commande ultérieure, les frais de livraison sont calculés sur devis selon votre adresse et la quantité commandée.</p><p>Le délai de livraison est de 3 jours. La disponibilité des produits est confirmée avant validation de la commande.</p><p>Le Client s’assure que l’accès est praticable et que quelqu’un est présent à la livraison. À la réception, il vérifie la quantité et l’état des produits ; toute anomalie apparente est mentionnée sur le bon de livraison et signalée par écrit sous 48 heures.</p>"],
 paiement:["Paiement sécurisé","<p>Le paiement s’effectue en ligne sur la page sécurisée Stripe. Les moyens disponibles sont présentés au moment du règlement. Les données de carte sont saisies dans l’interface sécurisée de Stripe et ne sont pas conservées par ce site.</p><p>Les produits sont expédiés après réception du paiement convenu. [À compléter : acompte éventuel et délai de paiement.]</p><p>Les prix sont indiqués en euros, toutes taxes comprises (TVA à 10 %), hors frais de livraison.</p>"],
 retours:["Retour et Remboursement","<p><b>Droit de rétractation (consommateurs)</b><br>Vous disposez de 14 jours à compter de la réception des produits pour vous rétracter, sans motif, en écrivant à chauffage@elleninan.fr. Les produits doivent être retournés dans leur état d’origine sous 14 jours après votre notification ; les frais de retour sont à votre charge. Le remboursement intervient dans les 14 jours suivant la réception des produits retournés ou la preuve de leur renvoi.</p><p>[À faire valider : conditions de retour pour les produits livrés en vrac ou déjà entamés.]</p><p><b>Garanties légales</b><br>Garantie légale de conformité (articles L.217-3 et suivants du Code de la consommation) et garantie des vices cachés (articles 1641 et suivants du Code civil).</p><p><b>Réclamations et médiation</b><br>Écrivez-nous à chauffage@elleninan.fr. À défaut de solution amiable, vous pouvez recourir gratuitement à un médiateur de la consommation : [à compléter : nom et coordonnées du médiateur].</p>"]};
@@ -559,7 +617,7 @@ requestAnimationFrame(frame)}
 
 tem();fam();shop();cartUI();route();setupTemMarquee();$("visitor-demo-close").addEventListener("click",function(){$("visitor-demo-banner").hidden=true});
 if(new URLSearchParams(location.search).get("checkout")==="cancel"){warn("Paiement annulé. Votre panier est conservé.");history.replaceState(null,"",location.pathname+location.hash)}
-if(new URLSearchParams(location.search).get("checkout")==="success"){var sid=new URLSearchParams(location.search).get("session_id");history.replaceState(null,"",location.pathname+location.hash);if(sid){fetch("/api/checkout-session?session_id="+encodeURIComponent(sid)).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||"Vérification indisponible.");return d})}).then(function(d){if(d.paymentStatus==="paid"){cart={};cartUI();warn("Paiement confirmé par Stripe. Référence : "+(d.orderReference||"commande"))}else warn("Le paiement est en attente de confirmation.")}).catch(function(){warn("Le paiement a été transmis, mais sa confirmation n’a pas pu être vérifiée. Consultez votre e-mail ou contactez-nous avant de recommencer.")})}}
+if(new URLSearchParams(location.search).get("checkout")==="success"){var sid=new URLSearchParams(location.search).get("session_id");history.replaceState(null,"",location.pathname+location.hash);if(sid){fetch("/api/checkout-session?session_id="+encodeURIComponent(sid)).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||"Vérification indisponible.");return d})}).then(function(d){if(d.paymentStatus==="paid"){trkPurchase(sid);cart={};cartUI();warn("Paiement confirmé par Stripe. Référence : "+(d.orderReference||"commande"))}else warn("Le paiement est en attente de confirmation.")}).catch(function(){warn("Le paiement a été transmis, mais sa confirmation n’a pas pu être vérifiée. Consultez votre e-mail ou contactez-nous avant de recommencer.")})}}
 
 
 (function(){var sl=document.querySelectorAll(".arch img"),k=0;if(sl.length&&!matchMedia("(prefers-reduced-motion:reduce)").matches)setInterval(function(){sl[k].classList.remove("on");k=(k+1)%sl.length;sl[k].classList.add("on")},5000);
@@ -568,6 +626,24 @@ function calc(){var q=+Q.value,p=find(sel),price=priceFor(p,woodUnit);$("cqv").t
 $("seg").addEventListener("click",function(e){var b=e.target.closest("[data-len]");if(!b)return;sel=b.dataset.len;[].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)});calc()});
 Q.addEventListener("input",calc);
  [WH,WS].forEach(function(el){el.addEventListener("change",function(){woodUnit=this.value;WH.value=WS.value=woodUnit;try{localStorage.setItem("eln-unit",woodUnit)}catch(e){}fam();shop();cartUI();calc()})});
-$("cadd").addEventListener("click",function(){var b=this;cart[sel]=(cart[sel]||0)+(+Q.value);cartUI();b.textContent="Ajouté ✓";setTimeout(function(){b.textContent="Ajouter au panier"},1200)});calc()})();
+$("cadd").addEventListener("click",function(){var b=this;cart[sel]=(cart[sel]||0)+(+Q.value);trkAdd(sel,+Q.value);cartUI();b.textContent="Ajouté ✓";setTimeout(function(){b.textContent="Ajouter au panier"},1200)});calc()})();
+</script>
+<div id="ck-banner" role="dialog" aria-label="Choix relatif aux cookies" hidden><p>Nous utilisons le Pixel Meta (Facebook) pour mesurer l’efficacité de nos publicités. Il n’est activé qu’avec votre accord. <a href="#cookies">En savoir plus</a></p><div class="ckb"><button type="button" id="ck-no">Refuser</button><button type="button" class="ok" id="ck-yes">Accepter</button></div></div>
+<script>
+var PIXEL_ID="1114423053273828",CK_KEY="eln-consent";
+function ckGet(){try{var o=JSON.parse(localStorage.getItem(CK_KEY)||"null");if(o&&Date.now()-o.t<15552000000)return o.v}catch(e){}return null}
+function ckSet(v){try{localStorage.setItem(CK_KEY,JSON.stringify({v:v,t:Date.now()}))}catch(e){}}
+function pxLoad(){if(window.fbq)return;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init",PIXEL_ID);fbq("track","PageView")}
+function trk(ev,data,opt){try{if(window.fbq&&ckGet()==="yes")opt?fbq("track",ev,data||{},opt):fbq("track",ev,data||{})}catch(e){}}
+function trkPage(h){trk("PageView");if(h==="boutique")trk("ViewContent",{content_name:"Boutique",content_type:"product_group"})}
+function trkAdd(id,q){try{var p=find(id);if(!p)return;var u=p.conv?woodUnit:p.u;trk("AddToCart",{content_ids:[id],content_name:p.n,content_type:"product",value:Math.round(priceFor(p,u)*q*100)/100,currency:"EUR"})}catch(e){}}
+function trkCheckout(){try{var v=Math.round(total()*100)/100;try{sessionStorage.setItem("eln-last-total",String(v))}catch(e){}trk("InitiateCheckout",{value:v,currency:"EUR",num_items:lines().reduce(function(s,l){return s+l[1]},0),content_ids:lines().map(function(l){return l[0].id})})}catch(e){}}
+function trkPurchase(sid){try{var v=parseFloat(sessionStorage.getItem("eln-last-total"))||0;trk("Purchase",{value:v,currency:"EUR"},{eventID:sid})}catch(e){}}
+(function(){var B=document.getElementById("ck-banner");function show(){B.hidden=false}
+document.getElementById("ck-yes").addEventListener("click",function(){ckSet("yes");B.hidden=true;pxLoad();if(window.fbq)try{fbq("consent","grant")}catch(e){}});
+document.getElementById("ck-no").addEventListener("click",function(){ckSet("no");B.hidden=true;if(window.fbq)try{fbq("consent","revoke")}catch(e){}});
+document.addEventListener("click",function(e){if(e.target.closest&&e.target.closest("[data-ck]"))show()});
+document.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.hasAttribute&&e.target.hasAttribute("data-ck")){e.preventDefault();show()}});
+var c=ckGet();if(c==="yes")pxLoad();else if(c===null)show()})();
 </script>
 </body></html>
