@@ -957,8 +957,10 @@ var po=document.getElementById("pay-order");if(po)po.addEventListener("click",fu
 I18N.detect=function(){
   var saved=null;try{saved=localStorage.getItem("eln-lang")}catch(e){}
   if(saved&&ELN_LANGS.indexOf(saved)>=0)return saved;
-  /* Langue par défaut du site : allemand (le visiteur peut changer avec le menu ; son choix est mémorisé) */
-  return "de"};
+  /* Langue du navigateur du visiteur (fr, en, de, es, nl), sinon anglais ; le choix fait dans le menu est mémorisé */
+  var nl=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"fr"]);
+  for(var i=0;i<nl.length;i++){var c=String(nl[i]).slice(0,2).toLowerCase();if(ELN_LANGS.indexOf(c)>=0)return c}
+  return "en"};
 (function(){
   var s=document.getElementById("lang");
   if(s)s.addEventListener("change",function(){I18N.setLang(this.value,true)});
