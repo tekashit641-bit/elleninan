@@ -392,7 +392,7 @@ footer a:hover{color:#fff}
 <h3>Coordonnées</h3><label for="on">Nom et prénom *</label><input id="on"><label for="oe">Adresse e-mail * <span class="note">(pour recevoir votre devis)</span></label><input id="oe" type="email"><label for="ot">Téléphone *</label><input id="ot" type="tel">
 <h3 style="margin-top:20px">Adresse de livraison</h3><label for="oa">Adresse, ville, pays *</label><textarea id="oa" rows="2"></textarea>
 <h3 style="margin-top:20px">Paiement</h3><p class="note" style="font-size:.9rem">Le paiement s’effectue directement sur ce site, dans un formulaire sécurisé Stripe, après validation de la commande. Les moyens disponibles y seront proposés. Offre de bienvenue : livraison offerte pour votre première commande. Cette offre est soumise à la zone de livraison desservie et aux conditions d’accès. Pour toute commande ultérieure, les frais de livraison sont calculés sur devis selon votre adresse et la quantité commandée.</p>
-<label for="oo">Note à votre commande</label><textarea id="oo" rows="2"></textarea>
+<p class="note" style="font-size:.9rem">Deux options pour valider : le paiement en ligne immédiat (carte bancaire, Klarna…) ou le virement bancaire.</p><label for="oo">Note à votre commande</label><textarea id="oo" rows="2"></textarea>
 <p style="margin-top:16px"><a class="btn" id="ovd" href="#devis">VALIDER MA COMMANDE</a></p><p class="note">En continuant, vous acceptez nos <a href="#cgv">conditions générales de vente</a>.</p></div>
 <div class="box"><h3>Résumé de la commande</h3><div id="sum"></div><p class="note chk-note" hidden></p><div class="tot"><span>Total</span><span id="tot2">0,00 €</span></div></div></div>
 </section></div></div>
@@ -420,6 +420,7 @@ footer a:hover{color:#fff}
 </ol>
 <h3>Article 6 – Paiement</h3>
 <p>Le paiement s’effectue en ligne via la page sécurisée Stripe. Les moyens disponibles sont présentés au Client à cette étape. Les produits sont préparés et expédiés après confirmation du règlement et de la disponibilité.</p>
+<p>Le Client peut également régler par virement bancaire : il en fait la demande par e-mail en joignant son devis, et le Vendeur lui transmet ses coordonnées bancaires (RIB). La commande est préparée après réception du virement.</p>
 <p>Pour les clients professionnels, toute somme non payée à son échéance produit de plein droit des intérêts de retard égaux au triple du taux d’intérêt légal, ainsi qu’une indemnité forfaitaire de 40 € pour frais de recouvrement.</p>
 <h3>Article 7 – Livraison</h3>
 <ol class='l'>
@@ -446,9 +447,9 @@ footer a:hover{color:#fff}
 <div class="pg" id="devis"><div class="w"><section>
 <p class="noprint"><a href="#commande">← Modifier mes informations</a></p>
 <div class="dv" id="dv"></div>
-<p class="noprint" style="text-align:center;margin-top:18px"><button class="btn" id="opdf" type="button">TÉLÉCHARGER MON DEVIS (PDF)</button> <button class="btn g" id="pay-order" type="button">VALIDER LA COMMANDE</button></p>
+<p class="noprint" style="text-align:center;margin-top:18px"><button class="btn" id="opdf" type="button">TÉLÉCHARGER MON DEVIS (PDF)</button> <button class="btn g" id="pay-order" type="button">VALIDER ET PAYER EN LIGNE</button> <button class="btn g" id="pay-transfer" type="button">VALIDER PAR VIREMENT</button></p><p class="note noprint" style="text-align:center;margin-top:0">Deux options pour valider : le paiement en ligne immédiat (carte bancaire, Klarna…) ou le virement bancaire.</p>
 <style>#pay-embed{max-width:760px;margin:22px auto 0}#pay-embed[hidden]{display:none}.pay-logos{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:10px 0 18px}.pay-logos img{height:32px;width:auto;border-radius:6px;display:block}#checkout{min-height:320px}@media(max-width:600px){.pay-logos img{height:28px}}</style>
-<div id="pay-embed" class="noprint" hidden><h3 style="text-align:center;margin:0">Paiement sécurisé</h3><div id="checkout"></div><div class="pay-under" style="text-align:center;margin-top:12px"><p class="note" style="margin:0">Moyens de paiement acceptés</p><div class="pay-logos" data-pay-logos role="list" aria-label="Moyens de paiement acceptés"></div></div><p style="text-align:center;margin-top:14px"><button class="btn g" id="pay-cancel" type="button">← Modifier ma commande</button></p></div>
+<div id="pay-embed" class="noprint" hidden><h3 style="text-align:center;margin:0">Paiement sécurisé</h3><div id="checkout"></div><div class="pay-under" style="text-align:center;margin-top:12px"><p class="note" style="margin:0">Moyens de paiement acceptés</p><div class="pay-logos" data-pay-logos role="list" aria-label="Moyens de paiement acceptés"></div></div><p style="text-align:center;margin-top:14px"><button class="btn g" id="pay-cancel" type="button">← Modifier ma commande</button></p></div><div id="transfer-box" class="box noprint" hidden style="max-width:760px;margin:22px auto 0"><h3>Paiement par virement</h3><p>Votre devis (PDF) vient d’être téléchargé et votre messagerie s’ouvre avec un message prêt à envoyer.</p><ol class="l"><li>Joignez le devis téléchargé à l’e-mail.</li><li>Envoyez le message : nous vous répondons avec le RIB de l’entreprise.</li><li>Votre commande est préparée dès réception du virement.</li></ol><p class="note">Votre messagerie ne s’est pas ouverte ? Écrivez-nous à <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> en joignant votre devis.</p></div>
 <p class="note noprint" style="text-align:center">Le paiement en ligne porte sur les produits affichés. Les frais et modalités de livraison, s’ils s’appliquent, sont confirmés séparément avant expédition.</p>
 </section></div></div>
 
@@ -569,7 +570,7 @@ $("dv").innerHTML='<img class="dv-watermark" src="'+IM.logo+'" alt="" aria-hidde
 +'<p style="font-size:12px;color:#666;margin-top:16px"><b>Offre de bienvenue :</b> livraison offerte pour votre première commande. Cette offre est soumise à la zone de livraison desservie et aux conditions d’accès. Pour toute commande ultérieure, les frais de livraison sont calculés sur devis selon votre adresse et la quantité commandée.</p>'
 +'<p style="margin-top:12px">Nous restons à votre disposition pour toute information complémentaire.<br>Si ce devis vous convient, veuillez nous le retourner signé, précédé de la mention :<br>« BON POUR ACCORD ET EXÉCUTION DU DEVIS »</p>'
 +'<div class="dv-signature"><div class="dv-stamp" role="img" aria-label="Cachet EI Le Ninan, Bois de chauffage, Maintenon"><b>EI LE NINAN</b><span>BOIS DE CHAUFFAGE</span><small>28130 · MAINTENON</small><i>SIREN 103 205 902</i></div><div class="dv-sign-line"><u><b>Signature</b></u><div style="height:58px"></div></div></div>'
-+(hasChk()?'<p style="color:#8a4b00;font-size:12px;font-weight:700">'+CHKTXT+'</p>':'')+'<p style="color:#666;font-size:12px">Délai de livraison : 5 jours.<br>Disponibilité : à confirmer avant validation.<br>Mode de paiement : paiement en ligne via Stripe.<br>Toute somme non payée à sa date d’exigibilité produira de plein droit des intérêts de retard équivalents au triple du taux d’intérêt légal de l’année en cours ainsi que le paiement d’une somme de 40 € due au titre des frais de recouvrement.</p>'
++(hasChk()?'<p style="color:#8a4b00;font-size:12px;font-weight:700">'+CHKTXT+'</p>':'')+'<p style="color:#666;font-size:12px">Délai de livraison : 5 jours.<br>Disponibilité : à confirmer avant validation.<br>Mode de paiement : paiement en ligne (Stripe) ou virement bancaire.<br>Toute somme non payée à sa date d’exigibilité produira de plein droit des intérêts de retard équivalents au triple du taux d’intérêt légal de l’année en cours ainsi que le paiement d’une somme de 40 € due au titre des frais de recouvrement.</p>'
 +'<div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;font-weight:700;margin-top:18px"><div>EI LE NINAN<br>N° Siren : 103205902<br>N° SIRET : 10320590200010<br>N° TVA : FR23103205902</div></div>';
 window.DVD={ref:ref,dt:dt,nom:$("on").value,adr:$("oa").value,tel:$("ot").value,mail:$("oe").value.trim(),rows:L.map(function(l){var u=r2(l[3]/1.1);return[String(l[1])+" "+l[2],l[0].n+" ("+per(l[2])+")",eur(u),eur(r2(u*l[1]))]}),ht:eur(ht),tv:eur(tv),ttc:eur(T),logo:IM.logo}}
 
@@ -579,7 +580,7 @@ var stripeLoading=null;
 function loadStripe(){if(typeof Stripe==="function")return Promise.resolve();if(stripeLoading)return stripeLoading;stripeLoading=new Promise(function(resolve,reject){var s=document.createElement("script"),t=setTimeout(function(){stripeLoading=null;reject(new Error("Le module de paiement met trop de temps à charger. Vérifiez votre connexion et réessayez."))},20000);s.src="https://js.stripe.com/v3/";s.async=true;s.onload=function(){clearTimeout(t);typeof Stripe==="function"?resolve():(stripeLoading=null,reject(new Error("Le module de paiement n’a pas pu se charger.")))};s.onerror=function(){clearTimeout(t);stripeLoading=null;reject(new Error("Le module de paiement n’a pas pu se charger. Vérifiez votre connexion ou désactivez votre bloqueur de publicités."))};document.head.appendChild(s)});return stripeLoading}
 window.addEventListener("load",function(){setTimeout(function(){loadStripe().catch(function(){})},1500)});
 var embedded=null,stripeInstance=null;
-function closeEmbed(){if(embedded){try{embedded.destroy()}catch(e){}embedded=null}var box=$("pay-embed");if(box)box.hidden=true;var ob=$("opdf");if(ob&&ob.parentNode)ob.parentNode.style.display="";var pb=$("pay-order");pb.disabled=false;pb.textContent="VALIDER LA COMMANDE"}
+function closeEmbed(){if(embedded){try{embedded.destroy()}catch(e){}embedded=null}var box=$("pay-embed");if(box)box.hidden=true;var ob=$("opdf");if(ob&&ob.parentNode)ob.parentNode.style.display="";var pb=$("pay-order");pb.disabled=false;pb.textContent="VALIDER ET PAYER EN LIGNE";var tb=$("transfer-box");if(tb)tb.hidden=true}
 $("pay-order").addEventListener("click",async function(){var err=orderErr();if(err){warn(err);return}trkCheckout();var button=$("pay-order");button.disabled=true;button.textContent="Préparation du paiement…";try{await loadStripe();var payload={cart:lines().map(function(l){return{id:l[0].id,quantity:l[1],unit:l[0].conv?l[2]:undefined}}),locale:I18N.lang,customer:{name:$("on").value.trim(),email:$("oe").value.trim(),phone:$("ot").value.trim(),address:$("oa").value.trim()}};var responses=await Promise.all([fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),fetch("/api/stripe-config")]);var data=await responses[0].json().catch(function(){return{}});var config=await responses[1].json().catch(function(){return{}});if(!responses[0].ok||!data.clientSecret)throw new Error(data.error||"Paiement indisponible.");if(!responses[1].ok||!config.publishableKey)throw new Error(config.error||"Paiement indisponible.");if(embedded){try{embedded.destroy()}catch(e){}embedded=null}if(!stripeInstance||stripeInstance.__loc!==I18N.lang){stripeInstance=Stripe(config.publishableKey,{locale:I18N.lang});stripeInstance.__loc=I18N.lang}embedded=await stripeInstance.initEmbeddedCheckout({clientSecret:data.clientSecret});$("opdf").parentNode.style.display="none";$("pay-embed").hidden=false;embedded.mount("#checkout");$("pay-embed").scrollIntoView({behavior:"smooth",block:"start"})}catch(error){warn(error.message||"Impossible de préparer le paiement. Réessayez plus tard.");closeEmbed()}});
 $("pay-cancel").addEventListener("click",function(){closeEmbed();warn("Paiement annulé. Votre panier est conservé.")});
 window.addEventListener("hashchange",closeEmbed);
@@ -591,7 +592,7 @@ mentions:["Mentions légales","<p><b>Éditeur du site</b><br>EI LE NINAN, entrep
 confidentialite:["Politique de confidentialité","<p>Les informations saisies dans les formulaires du site (nom, adresse, téléphone, e-mail, contenu de la commande) servent uniquement à préparer votre devis, traiter votre commande, la livrer et vous répondre.</p><p>Le site ne stocke pas ces informations : elles sont transmises au Vendeur par WhatsApp ou par e-mail, à votre initiative. Elles ne sont pas cédées à des tiers, hors prestataires nécessaires à la livraison, et sont conservées le temps nécessaire au traitement de la commande et au respect des obligations légales et comptables.</p><p>Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition. Pour l’exercer, écrivez à chauffage@elleninan.fr. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p>Si vous acceptez le Pixel Meta, Meta Platforms Ireland Ltd reçoit des données de navigation (pages consultées, produits ajoutés au panier, montant des commandes) pour la mesure et le ciblage publicitaires. Voir la politique de cookies pour retirer votre consentement.</p>"],
 cookies:["Politique de cookies","<p>Ce site utilise le Pixel Meta (Facebook), un traceur publicitaire, uniquement si vous l’acceptez via le bandeau affiché à votre première visite. Il mesure les pages vues, les ajouts au panier et les commandes afin d’évaluer et d’améliorer nos publicités sur Facebook et Instagram. Tant que vous ne l’acceptez pas, aucun traceur publicitaire n’est chargé.</p><p>Vous pouvez modifier votre choix à tout moment avec le lien « Gérer les cookies » en bas de page. Votre choix est conservé sur votre appareil pendant 6 mois.</p><p>Les liens vers WhatsApp, Instagram, Facebook et TikTok ouvrent des services tiers qui ont leurs propres règles en matière de cookies et de données personnelles.</p>"],
 livraison:["Politique de livraison","<p>La livraison s’effectue à l’adresse indiquée par le Client, dans la zone desservie par le Vendeur. Offre de bienvenue : la livraison est offerte pour votre première commande. Cette offre est soumise à la zone de livraison desservie et aux conditions d’accès. Pour toute commande ultérieure, les frais de livraison sont calculés sur devis selon votre adresse et la quantité commandée.</p><p>Le délai de livraison est de 5 jours. La disponibilité des produits est confirmée avant validation de la commande.</p><p>Le Client s’assure que l’accès est praticable et que quelqu’un est présent à la livraison. À la réception, il vérifie la quantité et l’état des produits ; toute anomalie apparente est mentionnée sur le bon de livraison et signalée par écrit sous 48 heures.</p>"],
-paiement:["Paiement sécurisé","<p>Le paiement s’effectue en ligne sur la page sécurisée Stripe. Les moyens disponibles sont présentés au moment du règlement. Les données de carte sont saisies dans l’interface sécurisée de Stripe et ne sont pas conservées par ce site.</p><p>Les produits sont expédiés après réception du paiement convenu.</p><p>Les prix sont indiqués en euros, toutes taxes comprises (TVA à 10 %), hors frais de livraison.</p>"],
+paiement:["Paiement sécurisé","<p>Le paiement s’effectue en ligne sur la page sécurisée Stripe. Les moyens disponibles sont présentés au moment du règlement. Les données de carte sont saisies dans l’interface sécurisée de Stripe et ne sont pas conservées par ce site.</p><p>Les produits sont expédiés après réception du paiement convenu.</p><p>Le Client peut également régler par virement bancaire : il en fait la demande par e-mail en joignant son devis, et le Vendeur lui transmet ses coordonnées bancaires (RIB). La commande est préparée après réception du virement.</p><p>Les prix sont indiqués en euros, toutes taxes comprises (TVA à 10 %), hors frais de livraison.</p>"],
 retours:["Retour et Remboursement","<p><b>Droit de rétractation (consommateurs)</b><br>Vous disposez de 14 jours à compter de la réception des produits pour vous rétracter, sans motif, en écrivant à chauffage@elleninan.fr. Les produits doivent être retournés dans leur état d’origine sous 14 jours après votre notification ; les frais de retour sont à votre charge. Le remboursement intervient dans les 14 jours suivant la réception des produits retournés ou la preuve de leur renvoi.</p><p><b>Garanties légales</b><br>Garantie légale de conformité (articles L.217-3 et suivants du Code de la consommation) et garantie des vices cachés (articles 1641 et suivants du Code civil).</p><p><b>Réclamations et médiation</b><br>Écrivez-nous à chauffage@elleninan.fr.</p>"]};
 Object.keys(LEG).forEach(function(k){var d=document.createElement("div");d.className="pg";d.id=k;d.innerHTML='<div class="w"><section><div class="eb">Informations légales</div><h1>'+LEG[k][0]+'</h1><div class="box" style="color:var(--tx);max-width:820px">'+LEG[k][1].replace(/\[[^\]]*\]/g,function(m){return"<mark>"+m+"</mark>"})+'</div></section></div>';document.querySelector("main").appendChild(d)});
 
@@ -624,7 +625,7 @@ if(hasChk())para(T(CHKTXT),8,60,4);
 para(T("Offre de bienvenue : livraison offerte pour votre première commande. Cette offre est soumise à la zone de livraison desservie et aux conditions d’accès. Pour toute commande ultérieure, les frais de livraison sont calculés sur devis selon votre adresse et la quantité commandée."),8,110,4);
 para(T("Nous restons à votre disposition pour toute information complémentaire.")+"\n"+T("Si ce devis vous convient, veuillez nous le retourner signé, précédé de la mention :")+"\n"+T("« BON POUR ACCORD ET EXÉCUTION DU DEVIS »"),9.5,20,6);
 need(30);txt(T("Signature"),R,y,{align:"right"},9.5,1);doc.setDrawColor(20,20,20);doc.line(R-19,y+1,R,y+1);y+=16;
-para(["Délai de livraison : 5 jours.","Disponibilité : à confirmer avant validation.","Mode de paiement : paiement en ligne via Stripe.","Toute somme non payée à sa date d’exigibilité produira de plein droit des intérêts de retard équivalents au triple du taux d’intérêt légal de l’année en cours ainsi que le paiement d’une somme de 40 € due au titre des frais de recouvrement."].map(T).join("\n"),7.5,110,4);
+para(["Délai de livraison : 5 jours.","Disponibilité : à confirmer avant validation.","Mode de paiement : paiement en ligne (Stripe) ou virement bancaire.","Toute somme non payée à sa date d’exigibilité produira de plein droit des intérêts de retard équivalents au triple du taux d’intérêt légal de l’année en cours ainsi que le paiement d’une somme de 40 € due au titre des frais de recouvrement."].map(T).join("\n"),7.5,110,4);
 need(20);
 ["EI LE NINAN","N° Siren : 103205902","N° SIRET : 10320590200010","N° TVA : FR23103205902"].forEach(function(s,i){txt(T(s),L,y+i*4,0,7.5,1)});
 return doc}
@@ -804,7 +805,7 @@ es:{'<span><b>Offre de bienvenue :</b> livraison offerte pour votre première co
 nl:{'<span><b>Offre de bienvenue :</b> livraison offerte pour votre première commande</span><a href="#offres">Voir nos prix promotionnels</a>':'<span><b>Welkomstaanbieding:</b> gratis levering bij uw eerste bestelling</span><a href="#offres">Bekijk onze actieprijzen</a>',
 "Offres du moment":"Actuele aanbiedingen","Profitez de nos offres":"Profiteer van onze aanbiedingen","Livraison offerte":"Gratis levering","Pour votre première commande, la livraison est offerte.":"Bij uw eerste bestelling is de levering gratis.","Selon la zone desservie et les conditions d’accès.":"Afhankelijk van het leveringsgebied en de toegankelijkheid.","Commander maintenant":"Nu bestellen","Prix promotionnels":"Actieprijzen","Bois compressé, briquettes et granulés en lots ou en vrac à prix promotionnel.":"Geperst hout, briketten en pellets per set of los tegen actieprijzen.","Voir le bois compressé":"Geperst hout bekijken","Prix dégressifs":"Staffelprijzen","Plus le conditionnement est grand, plus le prix au kg baisse : quart, demi ou palette complète.":"Hoe groter de verpakking, hoe lager de kiloprijs: kwart, halve of volle pallet.","Pini Kay en palette complète, par rapport au pack.":"Pini Kay per volle pallet ten opzichte van het pak.","Voir les Pini Kay":"Pini Kay bekijken","Petits bois pour démarrer le feu sans produits chimiques. 5 € le filet.":"Klein hout om het vuur aan te steken zonder chemische producten. 5 € per net.","Le choix du moyen de paiement se fait sur la page de règlement.":"U kiest de betaalmethode op de betaalpagina."}};
 (function(){
-  var ld=I18N.load;I18N.load=function(L){ld(L);var d=I18N.D[L];if(!d)return;[PROMO_I18N[L],(window.EXTRA_I18N||{})[L]].forEach(function(x){if(x)Object.keys(x).forEach(function(k){d[I18N.norm(k)]=x[k]})})};
+  var ld=I18N.load;I18N.load=function(L){ld(L);var d=I18N.D[L];if(!d)return;[PROMO_I18N[L],(window.EXTRA_I18N||{})[L],(window.NEW_I18N||{})[L]].forEach(function(x){if(x)Object.keys(x).forEach(function(k){d[I18N.norm(k)]=x[k]})});if(window.MP_FIX)MP_FIX(d,L)};
   var W={de:["Mengenrabatt: ","pro kg","gegenüber dem ",{pack:"Pack",sac:"Sack"},"Bis zu ","bei größerer Verpackungseinheit"],
          en:["Volume price: ","per kg","compared with the ",{pack:"pack",sac:"bag"},"Up to ","with a larger pack size"],
          es:["Precio decreciente: ","por kg","respecto al ",{pack:"pack",sac:"saco"},"Hasta ","eligiendo un formato mayor"],
@@ -812,6 +813,146 @@ nl:{'<span><b>Offre de bienvenue :</b> livraison offerte pour votre première co
   Object.keys(W).forEach(function(L){var w=W[L];I18N.rules[L]=(I18N.rules[L]||[]).concat([
     [/^Prix dégressif : <span class="save-tag">−(\d+) % au kg<\/span> par rapport au (pack|sac)$/,function(_,p,b){return w[0]+'<span class="save-tag">−'+p+' % '+w[1]+'</span> '+w[2]+w[3][b]}],
     [/^<span class="save-tag">Jusqu’à −(\d+) % au kg<\/span> en choisissant un plus grand conditionnement$/,function(_,p){return '<span class="save-tag">'+w[4]+'−'+p+' % '+w[1]+'</span> '+w[5]}]])});
+})();
+/* Témoignages traduits, paiement par virement et Klarna */
+var TEM_TR={
+de:["Das Holz kam perfekt trocken und bereits gespalten an. Wir konnten es sofort aufstapeln. Die Qualität ist wirklich besser als alles, was ich bisher gewohnt war.",
+"Dichtes Eichenholz, keinerlei Feuchtigkeit, saubere und pünktliche Lieferung. Genau das, was man sucht, wenn man die ganze Saison mit Holz heizt.",
+"Ich hatte etwas Bedenken, online zu bestellen, aber das Ergebnis hat mich völlig überzeugt. Gleichmäßig zugeschnittenes, trockenes Holz, sofort einsatzbereit. Auch der Kundenservice hat sehr schnell reagiert.",
+"Das Holz ist trocken, sauber gespalten, und die Menge entsprach genau der Bestellung. Keine bösen Überraschungen – das ist selten.",
+"Hochwertiges Buchenholz. Es brennt leicht an und hält die Glut lange. Wir sind wirklich zufrieden.",
+"Sorgfältige Lieferung, sauberes und gut getrocknetes Holz. Man merkt, dass gewissenhaft sortiert wurde. Ich kann es uneingeschränkt empfehlen.",
+"Trocken, ordentlich gestapelt und schön dicht. Wir heizen bereits damit, und die Heizleistung ist sehr gut.",
+"Nach mehreren Jahren auf der Suche nach einem zuverlässigen Lieferanten haben wir endlich einen gefunden. Alles hat gestimmt: Qualität, Menge und Lieferzeit.",
+"Holz von sehr schöner Qualität. Trocken, sauber und direkt bereit zum Einlagern. Der Service war von Anfang bis Ende unkompliziert und effizient.",
+"Das Holz kam perfekt trocken und sauber gespalten an. Keine Feuchtigkeit, keine Enttäuschung. Genau das, was wir erwartet hatten.",
+"Das Holz hat eine gute Dichte, ist gut getrocknet, und die Lieferung verlief völlig problemlos. Ich bin sehr zufrieden.",
+"Die Qualität stimmt, die Trocknung ist einwandfrei und die Palette war sauber. Wir haben die Seite schon Freunden empfohlen."],
+en:["The wood arrived perfectly dry and already split. We could stack it straight away. Truly better quality than what I was used to finding.",
+"Dense oak, no trace of moisture, a clean and punctual delivery. Exactly what you look for when you heat with wood all season.",
+"I was a little nervous about ordering online, but the result completely reassured me. Evenly sized, dry wood, ready to use. Very responsive customer service too.",
+"The wood is dry, well split, and the quantity matched the order exactly. No unpleasant surprises, which is rare.",
+"Quality beech wood. It lights easily and holds its embers well. We’re really happy.",
+"Careful delivery, clean and thoroughly dry wood. You can tell it was sorted with care. I recommend it without hesitation.",
+"Dry, neatly stacked and nicely dense. We’ve already started using it and it burns very efficiently.",
+"After several years looking for a reliable supplier, we’ve finally found one. Everything was as promised: quality, quantity and lead time.",
+"Very fine quality wood. Dry, clean and ready to store. The service was simple and efficient from start to finish.",
+"The wood arrived perfectly dry and well split. No moisture, no disappointment. Exactly what we expected.",
+"The wood is nicely dense and well dried, and the delivery went without a hitch. Very satisfied.",
+"The quality is there, the drying is flawless and the pallet was clean. We’ve already recommended the site to friends."],
+es:["La leña llegó perfectamente seca y ya partida. Pudimos apilarla enseguida. Una calidad realmente superior a la que solía encontrar.",
+"Leña de roble densa, sin rastro de humedad, entrega limpia y puntual. Justo lo que se busca cuando uno se calienta con leña toda la temporada.",
+"Me daba un poco de miedo pedir por internet, pero el resultado me tranquilizó por completo. Leña bien calibrada, seca y lista para usar. Además, el servicio al cliente respondió muy rápido.",
+"La leña está seca, bien partida, y la cantidad correspondía exactamente al pedido. Ninguna mala sorpresa, algo poco habitual.",
+"Leña de haya de calidad. Prende con facilidad y mantiene bien las brasas. Estamos muy contentos.",
+"Entrega cuidadosa, leña limpia y bien seca. Se nota que la selección se ha hecho en serio. Lo recomiendo sin dudarlo.",
+"Seca, bien colocada y de buena densidad. Ya hemos empezado a usarla y el rendimiento es muy bueno.",
+"Tras varios años buscando un proveedor fiable, por fin lo hemos encontrado. Todo fue conforme: calidad, cantidad y plazos.",
+"Leña de muy buena calidad. Seca, limpia y lista para almacenar. El servicio fue sencillo y eficaz de principio a fin.",
+"La leña llegó perfectamente seca y bien partida. Nada de humedad, ninguna decepción. Justo lo que esperábamos.",
+"La leña tiene buena densidad, está bien seca y la entrega se hizo sin ningún problema. Muy satisfecha.",
+"La calidad está a la altura, el secado es impecable y el palé estaba limpio. Ya hemos recomendado la web a unos amigos."],
+nl:["Het hout kwam perfect droog en al gekloofd aan. We konden het meteen opstapelen. Echt betere kwaliteit dan ik gewend was.",
+"Dicht eikenhout, geen spoor van vocht, nette en stipte levering. Precies wat je zoekt als je het hele seizoen met hout stookt.",
+"Ik was een beetje huiverig om online te bestellen, maar het resultaat heeft me volledig gerustgesteld. Gelijkmatig gezaagd, droog hout, klaar voor gebruik. Ook de klantenservice reageerde heel snel.",
+"Het hout is droog, goed gekloofd en de hoeveelheid kwam precies overeen met de bestelling. Geen onaangename verrassingen, en dat is zeldzaam.",
+"Kwalitatief beukenhout. Het brandt makkelijk aan en houdt de gloed lang vast. We zijn echt tevreden.",
+"Zorgvuldige levering, schoon en goed droog hout. Je merkt dat er serieus is gesorteerd. Ik raad het zonder aarzelen aan.",
+"Droog, netjes gestapeld en mooi compact. We stoken er al mee en het rendement is erg goed.",
+"Na jarenlang zoeken naar een betrouwbare leverancier hebben we er eindelijk een gevonden. Alles klopte: kwaliteit, hoeveelheid en levertijd.",
+"Hout van zeer mooie kwaliteit. Droog, schoon en meteen klaar om op te slaan. De service was van begin tot eind eenvoudig en efficiënt.",
+"Het hout kwam perfect droog en goed gekloofd aan. Geen vocht, geen teleurstelling. Precies wat we verwachtten.",
+"Het hout heeft een goede dichtheid, is goed droog en de levering verliep zonder enig probleem. Zeer tevreden.",
+"De kwaliteit is in orde, het hout is perfect gedroogd en de pallet was schoon. We hebben de site al aan vrienden aangeraden."]};
+var TEM_Q={de:["„","“"],en:["“","”"],es:["«","»"],nl:["“","”"]};
+var MP_OLD="Mode de paiement : paiement en ligne via Stripe.",MP_NEW="Mode de paiement : paiement en ligne (Stripe) ou virement bancaire.";
+var PAY_FR={
+on:"VALIDER ET PAYER EN LIGNE",vir:"VALIDER PAR VIREMENT",
+two:"Deux options pour valider : le paiement en ligne immédiat (carte bancaire, Klarna…) ou le virement bancaire.",
+tt:"Paiement par virement",
+s1:"Votre devis (PDF) vient d’être téléchargé et votre messagerie s’ouvre avec un message prêt à envoyer.",
+l1:"Joignez le devis téléchargé à l’e-mail.",
+l2:"Envoyez le message : nous vous répondons avec le RIB de l’entreprise.",
+l3:"Votre commande est préparée dès réception du virement.",
+fb:'Votre messagerie ne s’est pas ouverte ? Écrivez-nous à <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> en joignant votre devis.',
+cgv:"Le Client peut également régler par virement bancaire : il en fait la demande par e-mail en joignant son devis, et le Vendeur lui transmet ses coordonnées bancaires (RIB). La commande est préparée après réception du virement.",
+mp:MP_NEW};
+var PAY_TR={
+de:{on:"BESTÄTIGEN UND ONLINE BEZAHLEN",vir:"PER ÜBERWEISUNG BESTÄTIGEN",
+two:"Zwei Möglichkeiten zur Bestätigung: sofortige Online-Zahlung (Kreditkarte, Klarna…) oder Banküberweisung.",
+tt:"Zahlung per Überweisung",
+s1:"Ihr Angebot (PDF) wurde soeben heruntergeladen, und Ihr E-Mail-Programm öffnet sich mit einer vorbereiteten Nachricht.",
+l1:"Fügen Sie das heruntergeladene Angebot der E-Mail als Anhang hinzu.",
+l2:"Senden Sie die Nachricht ab: Wir antworten Ihnen mit der Bankverbindung des Unternehmens.",
+l3:"Ihre Bestellung wird nach Eingang der Überweisung vorbereitet.",
+fb:'Ihr E-Mail-Programm hat sich nicht geöffnet? Schreiben Sie uns an <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> und fügen Sie Ihr Angebot bei.',
+cgv:"Der Kunde kann auch per Banküberweisung bezahlen: Er fordert diese per E-Mail unter Beifügung seines Angebots an, und der Verkäufer übermittelt ihm seine Bankverbindung. Die Bestellung wird nach Eingang der Überweisung vorbereitet.",
+mp:"Zahlungsart: Online-Zahlung (Stripe) oder Banküberweisung."},
+en:{on:"CONFIRM AND PAY ONLINE",vir:"CONFIRM BY BANK TRANSFER",
+two:"Two ways to confirm: instant online payment (card, Klarna…) or bank transfer.",
+tt:"Payment by bank transfer",
+s1:"Your quote (PDF) has just been downloaded and your email app is opening with a ready-to-send message.",
+l1:"Attach the downloaded quote to the email.",
+l2:"Send the message: we will reply with the company’s bank details.",
+l3:"Your order is prepared as soon as the transfer is received.",
+fb:'Your email app did not open? Write to us at <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> and attach your quote.',
+cgv:"The Customer may also pay by bank transfer: they request it by email, attaching their quote, and the Seller sends them its bank details. The order is prepared once the transfer has been received.",
+mp:"Payment method: online payment (Stripe) or bank transfer."},
+es:{on:"CONFIRMAR Y PAGAR EN LÍNEA",vir:"CONFIRMAR POR TRANSFERENCIA",
+two:"Dos opciones para confirmar: pago en línea inmediato (tarjeta, Klarna…) o transferencia bancaria.",
+tt:"Pago por transferencia",
+s1:"Su presupuesto (PDF) se acaba de descargar y su correo se abre con un mensaje listo para enviar.",
+l1:"Adjunte el presupuesto descargado al correo.",
+l2:"Envíe el mensaje: le responderemos con los datos bancarios de la empresa.",
+l3:"Su pedido se prepara en cuanto recibimos la transferencia.",
+fb:'¿No se ha abierto su correo? Escríbanos a <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> adjuntando su presupuesto.',
+cgv:"El Cliente también puede pagar por transferencia bancaria: lo solicita por correo electrónico adjuntando su presupuesto y el Vendedor le facilita sus datos bancarios. El pedido se prepara una vez recibida la transferencia.",
+mp:"Método de pago: pago en línea (Stripe) o transferencia bancaria."},
+nl:{on:"BEVESTIGEN EN ONLINE BETALEN",vir:"BEVESTIGEN PER OVERSCHRIJVING",
+two:"Twee manieren om te bevestigen: directe onlinebetaling (kaart, Klarna…) of bankoverschrijving.",
+tt:"Betalen per overschrijving",
+s1:"Uw offerte (pdf) is zojuist gedownload en uw e-mailprogramma opent met een kant-en-klaar bericht.",
+l1:"Voeg de gedownloade offerte als bijlage toe aan de e-mail.",
+l2:"Verstuur het bericht: wij antwoorden met de bankgegevens van het bedrijf.",
+l3:"Uw bestelling wordt voorbereid zodra de overschrijving is ontvangen.",
+fb:'Is uw e-mailprogramma niet geopend? Schrijf ons op <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> en voeg uw offerte toe.',
+cgv:"De Klant kan ook per bankoverschrijving betalen: hij vraagt dit per e-mail aan met zijn offerte als bijlage, waarna de Verkoper hem zijn bankgegevens bezorgt. De bestelling wordt voorbereid na ontvangst van de overschrijving.",
+mp:"Betaalmethode: onlinebetaling (Stripe) of bankoverschrijving."}};
+var NEW_I18N={};
+Object.keys(PAY_TR).forEach(function(L){var o=NEW_I18N[L]={};
+  Object.keys(PAY_FR).forEach(function(k){o[PAY_FR[k]]=PAY_TR[L][k]});
+  TEM.forEach(function(x,i){if(TEM_TR[L][i])o["“"+x.t+"”"]=TEM_Q[L][0]+TEM_TR[L][i]+TEM_Q[L][1]})});
+/* Ajoute aux dictionnaires la version « paiement en ligne ou virement » des paragraphes qui contenaient l'ancienne mention */
+function MP_FIX(d,L){var oT=d[MP_OLD],nT=PAY_TR[L]&&PAY_TR[L].mp;if(!oT||!nT)return;
+  Object.keys(d).forEach(function(k){if(k!==MP_OLD&&k.indexOf(MP_OLD)>=0&&typeof d[k]==="string"&&d[k].indexOf(oT)>=0){var nk=k.replace(MP_OLD,MP_NEW);if(d[nk]===undefined)d[nk]=d[k].replace(oT,nT)}})}
+(function(){
+  var FRM=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+  M={de:["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+     en:["January","February","March","April","May","June","July","August","September","October","November","December"],
+     es:["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],
+     nl:["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"]},
+  F={de:function(d,m,y){return d+". "+m+" "+y},en:function(d,m,y){return d+" "+m+" "+y},es:function(d,m,y){return d+" de "+m+" de "+y},nl:function(d,m,y){return d+" "+m+" "+y}},
+  RX=new RegExp("^(.+) · (\\d{1,2}) ("+FRM.join("|")+") (\\d{4})$");
+  Object.keys(M).forEach(function(L){I18N.rules[L]=(I18N.rules[L]||[]).concat([[RX,function(_,v,d,m,y){return v+" · "+F[L](d,M[L][FRM.indexOf(m)],y)}]])});
+})();
+/* Paiement par virement : télécharge le devis et ouvre un e-mail prérempli demandant le RIB */
+var MAILT={
+fr:{s:"Commande par virement – Devis ",h:"Bonjour,",b:"Je souhaite régler ma commande par virement bancaire. Pourriez-vous m’envoyer le RIB de l’entreprise ?",a:"Vous trouverez mon devis en pièce jointe.",r:"Référence du devis",t:"Montant total TTC",i:"Articles",n:"Nom",p:"Téléphone",e:"E-mail",d:"Adresse de livraison",c:"Cordialement,"},
+de:{s:"Bestellung per Überweisung – Angebot ",h:"Guten Tag,",b:"ich möchte meine Bestellung per Banküberweisung bezahlen. Könnten Sie mir bitte die Bankverbindung (IBAN) Ihres Unternehmens zusenden?",a:"Mein Angebot finden Sie im Anhang.",r:"Angebotsnummer",t:"Gesamtbetrag inkl. MwSt.",i:"Artikel",n:"Name",p:"Telefon",e:"E-Mail",d:"Lieferadresse",c:"Mit freundlichen Grüßen"},
+en:{s:"Order by bank transfer – Quote ",h:"Hello,",b:"I would like to pay for my order by bank transfer. Could you please send me the company’s bank details?",a:"Please find my quote attached.",r:"Quote reference",t:"Total amount incl. VAT",i:"Items",n:"Name",p:"Phone",e:"Email",d:"Delivery address",c:"Kind regards,"},
+es:{s:"Pedido por transferencia – Presupuesto ",h:"Buenos días:",b:"Deseo pagar mi pedido por transferencia bancaria. ¿Podrían enviarme los datos bancarios de la empresa?",a:"Adjunto mi presupuesto.",r:"Referencia del presupuesto",t:"Importe total con IVA",i:"Artículos",n:"Nombre",p:"Teléfono",e:"Correo electrónico",d:"Dirección de entrega",c:"Atentamente,"},
+nl:{s:"Bestelling per overschrijving – Offerte ",h:"Goedendag,",b:"Ik wil mijn bestelling per bankoverschrijving betalen. Kunt u mij de bankgegevens van het bedrijf toesturen?",a:"In de bijlage vindt u mijn offerte.",r:"Offertereferentie",t:"Totaalbedrag incl. btw",i:"Artikelen",n:"Naam",p:"Telefoon",e:"E-mail",d:"Afleveradres",c:"Met vriendelijke groet,"}};
+(function(){var b=document.getElementById("pay-transfer");if(!b)return;
+b.addEventListener("click",function(){var err=orderErr();if(err){warn(err);return}
+  if(typeof closeEmbed==="function")closeEmbed();
+  if(!window.DVD)renderDevis();
+  var D=window.DVD,L=I18N.lang,m=MAILT[L]||MAILT.fr,sep=L==="fr"?" : ":": ",tt=function(s){return L==="fr"?s:I18N.t(s)};
+  var body=[m.h,"",m.b,"",m.a,"",m.r+sep+D.ref,m.t+sep+D.ttc,"",m.i+sep.replace(/ $/,"")].concat(D.rows.map(function(r){return"- "+tt(r[0])+" – "+tt(r[1])}),["",m.n+sep+D.nom,m.p+sep+D.tel,m.e+sep+D.mail,m.d+sep+String(D.adr).replace(/\s*\n\s*/g,", "),"",m.c,D.nom]).join("\r\n");
+  var url="mailto:chauffage@elleninan.fr?subject="+encodeURIComponent(m.s+D.ref)+"&body="+encodeURIComponent(body);
+  try{$("opdf").click()}catch(e){}
+  var box=$("transfer-box");box.hidden=false;
+  setTimeout(function(){window.location.href=url;box.scrollIntoView({behavior:"smooth",block:"start"})},600)});
+var po=document.getElementById("pay-order");if(po)po.addEventListener("click",function(){var tb=$("transfer-box");if(tb)tb.hidden=true});
 })();
 I18N.detect=function(){
   var saved=null;try{saved=localStorage.getItem("eln-lang")}catch(e){}
