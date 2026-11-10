@@ -72,14 +72,14 @@
     [20, T_PAL, OAK, 65, 975, 499, "palette", "p_gv", [F.hard, F.glow, [PCI, "> 5,2"]]],
     [21, T_PAL, "HOYER", 66, 990, 390, "palette", "amper-hoyer", [[CERT, "ENplus A1"], [PCI, "> 5"], [ASH, "0,3–0,45"], [H, "6–8"]]],
     [23, T_PAL, "PELLINI", 66, 990, 285, "palette", "amper-pellini", [[CERT, "ENplus A1"], [PCI, "> 4,9"], [H, "6–8"], F.debark]],
-    [24, T_PAL, "REKORD Premium A1", 66, 990, 365, "palette", "p_gv", [[CERT, "ENplus A1"], F.soft]],
-    [27, T_PAL, "REKORD Premium 6 mm", 66, 990, 239, "palette", "p_gv", [[CERT, "ENplus A1"], F.soft, [H, "< 10"]]],
+    [24, T_PAL, "REKORD Premium A1", 66, 990, 365, "palette", "rk-granules-palette-a1", [[CERT, "ENplus A1"], F.soft]],
+    [27, T_PAL, "REKORD Premium 6 mm", 66, 990, 239, "palette", "rk-granules-palette-6mm", [[CERT, "ENplus A1"], F.soft, [H, "< 10"]]],
     [28, T_PAL, "REZULT Premium", 70, 1050, 499, "palette", "p_gv", [[CERT, "ENplus A1"], F.abr, F.lowash, F.hot]],
     [29, T_PAL, "Saxonia", 66, 990, 349, "palette", "amper-saxonia", [[CERT, "ENplus A1"], F.soft, F.dried]],
     [30, T_PAL, "THÜRINGER HD", 65, 975, 299, "palette", "p_gv", [[CERT, "ENplus A1"], [PCI, "≈ 5,3"], [H, "< 7"]]]
   ];
   var OUT = [], I18 = { de: {}, en: {}, es: {}, nl: {} }, IMG = {};
-  function img(k) { if (/^amper-|^buches-vrac$|^allumage-filet-orange$/.test(k)) { IMG["x_" + k] = "assets/produits/" + k + ".jpg"; return "x_" + k; } return k; }
+  function img(k) { if (/^amper-|^rk-|^buches-vrac$|^allumage-filet-orange$/.test(k)) { IMG["x_" + k] = "assets/produits/" + k + ".jpg"; return "x_" + k; } return k; }
   function add(n, cat, name, desc, p, u, im, e) {
     function esc(s) { return s.replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
     LG.slice(1).forEach(function (l) { [name, desc].forEach(function (t) { I18[l][t.fr] = t[l]; I18[l][esc(t.fr)] = esc(t[l]); }); });
@@ -91,8 +91,8 @@
     var pack = fill(r[1] === T_PAL3 ? SK3 : SK, { s: r[3], kg: r[4] });
     add(r[0], "Granulés", name, join([pack].concat(r[8].map(spec))), r[5], r[6], r[7]);
   });
-  add(25, "Granulés", fill(T_SAC, { b: "REKORD A1" }), join([[CERT, "ENplus A1"], F.soft, F.d6].map(spec)), 12.36, "sac", "p_gs");
-  add(26, "Granulés", fill(T_SAC2, { b: "REKORD A1" }), join([[CERT, "ENplus A1"], F.soft, F.d6].map(spec)), 18.19, "lot", "p_gs");
+  add(25, "Granulés", fill(T_SAC, { b: "REKORD A1" }), join([[CERT, "ENplus A1"], F.soft, F.d6].map(spec)), 12.36, "sac", "rk-granules-sac-15kg");
+  add(26, "Granulés", fill(T_SAC2, { b: "REKORD A1" }), join([[CERT, "ENplus A1"], F.soft, F.d6].map(spec)), 18.19, "lot", "rk-granules-2-sacs");
 
   /* ---------- Bois de chauffage ---------- */
   var SP = {
@@ -161,42 +161,42 @@
     join([{ fr: "bois sec", de: "trocken", en: "dry wood", es: "madera seca", nl: "droog hout" }, { fr: "450 litres", de: "450 Liter", en: "450 litres", es: "450 litros", nl: "450 liter" }]), 567.98, "palette", "allumage-filet-orange");
   add(67, "Allumage",
     { fr: "Petit bois d'allumage REKORD – lot de 4 sacs de 20 L", de: "REKORD Anzündholz – 4er-Set à 20 Liter", en: "REKORD kindling – set of 4 × 20 L bags", es: "Astillas de encendido REKORD – lote de 4 sacos de 20 L", nl: "REKORD aanmaakhout – set van 4 zakken van 20 L" },
-    join([F.soft, { fr: "sec", de: "trocken", en: "dry", es: "seco", nl: "droog" }]), 18.19, "lot", "allumage-filet-orange");
+    join([F.soft, { fr: "sec", de: "trocken", en: "dry", es: "seco", nl: "droog" }]), 18.19, "lot", "rk-allumage-4x20l");
   add(68, "Allumage",
     { fr: "Petit bois d'allumage REKORD – lot de 5 sacs de 5 L", de: "REKORD Anzündholz – Vorteilspack 5 Säcke à 5 Liter", en: "REKORD kindling – value pack of 5 × 5 L bags", es: "Astillas de encendido REKORD – lote de 5 sacos de 5 L", nl: "REKORD aanmaakhout – voordeelpak 5 zakken van 5 L" },
-    join([F.soft, { fr: "sec", de: "trocken", en: "dry", es: "seco", nl: "droog" }]), 21.83, "lot", "allumage-filet-orange");
+    join([F.soft, { fr: "sec", de: "trocken", en: "dry", es: "seco", nl: "droog" }]), 21.83, "lot", "rk-allumage-5x5l");
 
   /* ---------- Briquettes ---------- */
   var LIG = { fr: "briquettes de lignite REKORD", de: "REKORD Braunkohlebriketts", en: "REKORD lignite briquettes", es: "briquetas de lignito REKORD", nl: "REKORD bruinkoolbriketten" };
   var T_LIGN = { fr: "{k} palettes de {lig} (40 × 25 kg)", de: "{k} Paletten {lig} (40 × 25 kg)", en: "{k} pallets of {lig} (40 × 25 kg)", es: "{k} palés de {lig} (40 × 25 kg)", nl: "{k} pallets {lig} (40 × 25 kg)" };
   var D_LIGN = { fr: "{t} t au total ({b} bottes de 25 kg)", de: "Insgesamt {t} t ({b} Bündel à 25 kg)", en: "{t} t in total ({b} bundles of 25 kg)", es: "{t} t en total ({b} haces de 25 kg)", nl: "In totaal {t} t ({b} bundels van 25 kg)" };
   [[82, 5, 1091.27], [77, 10, 2548], [78, 15, 4357.08], [79, 20, 5813.08], [80, 25, 7261.80], [81, 30, 8714.16]].forEach(function (r) {
-    add(r[0], "Briquettes", fill(T_LIGN, { k: r[1], lig: LIG }), join([fill(D_LIGN, { t: r[1], b: r[1] * 40 }), F.hot, F.glow, F.compact]), r[2], "lot", "", "🔥");
+    add(r[0], "Briquettes", fill(T_LIGN, { k: r[1], lig: LIG }), join([fill(D_LIGN, { t: r[1], b: r[1] * 40 }), F.hot, F.glow, F.compact]), r[2], "lot", "rk-lignite-palette");
   });
   add(85, "Briquettes",
     { fr: "Palette de briquettes de lignite REKORD (40 × 25 kg)", de: "REKORD Braunkohlebriketts, Palette (40 × 25 kg)", en: "Pallet of REKORD lignite briquettes (40 × 25 kg)", es: "Palé de briquetas de lignito REKORD (40 × 25 kg)", nl: "Pallet REKORD bruinkoolbriketten (40 × 25 kg)" },
-    join([{ fr: "1 000 kg", de: "1.000 kg", en: "1,000 kg", es: "1.000 kg", nl: "1.000 kg" }, F.hot, F.glow]), 290.94, "palette", "", "🔥");
+    join([{ fr: "1 000 kg", de: "1.000 kg", en: "1,000 kg", es: "1.000 kg", nl: "1.000 kg" }, F.hot, F.glow]), 290.94, "palette", "rk-lignite-palette");
   add(88, "Briquettes",
     { fr: "Palette de briquettes de lignite REKORD 900 kg (90 × 10 kg)", de: "REKORD Braunkohlebriketts 900 kg Palette (90 × 10 kg)", en: "REKORD lignite briquettes 900 kg pallet (90 × 10 kg)", es: "Palé de briquetas de lignito REKORD 900 kg (90 × 10 kg)", nl: "Pallet REKORD bruinkoolbriketten 900 kg (90 × 10 kg)" },
-    join([F.hot, F.glow]), 412.05, "palette", "", "🔥");
+    join([F.hot, F.glow]), 412.05, "palette", "rk-lignite-palette-900kg");
   add(89, "Briquettes",
     { fr: "Briquettes de lignite REKORD 900 kg sous film, sur europalette", de: "REKORD Braunkohlebriketts 900 kg Folienpack auf Euro-Palette", en: "REKORD lignite briquettes 900 kg, film-wrapped on a Euro pallet", es: "Briquetas de lignito REKORD 900 kg en film, sobre europalé", nl: "REKORD bruinkoolbriketten 900 kg in folie op europallet" },
-    join([F.hot, F.glow]), 514.80, "palette", "", "🔥");
+    join([F.hot, F.glow]), 514.80, "palette", "rk-lignite-palette-film");
   add(90, "Briquettes",
     { fr: "Demi-palette de briquettes de lignite REKORD 450 kg (45 × 10 kg)", de: "REKORD Kaminbriketts, Halbpalette 450 kg (45 × 10 kg)", en: "Half pallet of REKORD lignite briquettes 450 kg (45 × 10 kg)", es: "Medio palé de briquetas de lignito REKORD 450 kg (45 × 10 kg)", nl: "Halve pallet REKORD bruinkoolbriketten 450 kg (45 × 10 kg)" },
-    join([F.hot, F.glow]), 275.91, "demi-palette", "", "🔥");
+    join([F.hot, F.glow]), 275.91, "demi-palette", "rk-lignite-demi-palette");
   add(87, "Briquettes",
     { fr: "Briquettes de lignite REKORD – botte de 25 kg (44 briquettes) avec allume-feu", de: "REKORD Braunkohlebriketts – 25-kg-Bündel (44 Steine) inkl. Kaminanzünder", en: "REKORD lignite briquettes – 25 kg bundle (44 pieces) with firelighters", es: "Briquetas de lignito REKORD – haz de 25 kg (44 piezas) con pastillas de encendido", nl: "REKORD bruinkoolbriketten – bundel van 25 kg (44 stuks) met aanmaakblokjes" },
-    join([F.hot, F.glow]), 17.10, "pack", "", "🔥");
+    join([F.hot, F.glow]), 17.10, "pack", "rk-lignite-botte-25kg");
   add(86, "Briquettes",
     { fr: "Pack REKORD Basic XL : briquettes et petit bois (24 kg)", de: "REKORD Basic XL Kombipaket Briketts & Anzündholz (24 kg)", en: "REKORD Basic XL combo: briquettes and kindling (24 kg)", es: "Pack REKORD Basic XL: briquetas y astillas (24 kg)", nl: "REKORD Basic XL combipakket: briketten en aanmaakhout (24 kg)" },
-    join([{ fr: "tout pour démarrer et entretenir le feu", de: "alles zum Anzünden und Heizen", en: "everything to light and keep the fire going", es: "todo para encender y mantener el fuego", nl: "alles om het vuur aan te steken en te onderhouden" }]), 18.48, "pack", "", "🔥");
+    join([{ fr: "tout pour démarrer et entretenir le feu", de: "alles zum Anzünden und Heizen", en: "everything to light and keep the fire going", es: "todo para encender y mantener el fuego", nl: "alles om het vuur aan te steken en te onderhouden" }]), 18.48, "pack", "rk-lignite-basic-xl");
   add(83, "Briquettes",
     { fr: "Palette de briquettes Pini Kay 960 kg (96 sacs de 10 kg)", de: "Pini Kay Holzbriketts, Palette 960 kg (96 Säcke à 10 kg)", en: "Pallet of Pini Kay briquettes 960 kg (96 × 10 kg bags)", es: "Palé de briquetas Pini Kay 960 kg (96 sacos de 10 kg)", nl: "Pallet Pini Kay briketten 960 kg (96 zakken van 10 kg)" },
     join([{ fr: "forme octogonale percée au centre", de: "achteckig mit Mittelloch", en: "octagonal with a centre hole", es: "forma octogonal con agujero central", nl: "achthoekig met middengat" }, F.hot, F.long]), 458.45, "palette", "p_pk");
   add(84, "Briquettes",
     { fr: "Palette de briquettes de résineux (96 × 10 kg)", de: "Nadelholzbriketts, Palette (96 × 10 kg)", en: "Pallet of softwood briquettes (96 × 10 kg)", es: "Palé de briquetas de conífera (96 × 10 kg)", nl: "Pallet naaldhoutbriketten (96 × 10 kg)" },
-    join([{ fr: "960 kg", de: "960 kg", en: "960 kg", es: "960 kg", nl: "960 kg" }, F.quick]), 296.30, "palette", "", "🪵");
+    join([{ fr: "960 kg", de: "960 kg", en: "960 kg", es: "960 kg", nl: "960 kg" }, F.quick]), 296.30, "palette", "rk-briquettes-resineux");
   add(91, "Briquettes",
     { fr: "Palette de briquettes de bois RUF 960 kg (96 × 10 kg)", de: "RUF Holzbriketts, Palette 960 kg (96 × 10 kg)", en: "Pallet of RUF wood briquettes 960 kg (96 × 10 kg)", es: "Palé de briquetas de madera RUF 960 kg (96 × 10 kg)", nl: "Pallet RUF houtbriketten 960 kg (96 × 10 kg)" },
     join([F.hot, F.lowash, F.compact]), 484.04, "palette", "p_ruf");
