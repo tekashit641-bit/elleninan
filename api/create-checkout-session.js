@@ -169,7 +169,7 @@ export default async function handler(req, res) {
     }
     let { response, data } = await createSession("embedded_page");
     if (!response.ok && data.error?.param === "ui_mode") ({ response, data } = await createSession("embedded"));
-    if (!response.ok || !data.client_secret) { console.error("Stripe Checkout error", data.error?.type, data.error?.code, data.error?.param); return res.status(502).json({ error: "Stripe n’a pas pu préparer le paiement. Vérifiez la configuration du compte." }); }
+    if (!response.ok || !data.client_secret) { console.error("Stripe Checkout error", data.error?.type, data.error?.code, data.error?.param, data.error?.message); const ref = [data.error?.code, data.error?.param].filter(Boolean).join(" / "); return res.status(502).json({ error: "Stripe n’a pas pu préparer le paiement. Vérifiez la configuration du compte." + (ref ? ` (code : ${ref})` : "") }); }
     return res.status(200).json({ clientSecret: data.client_secret });
   } catch (error) {
     return res.status(400).json({ error: error.message || "Demande invalide." });
