@@ -879,7 +879,7 @@ l2:"Envoyez le message : nous vous répondons avec le RIB de l’entreprise.",
 l3:"Votre commande est préparée dès réception du virement.",
 fb:'Votre messagerie ne s’est pas ouverte ? Écrivez-nous à <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> en joignant votre devis.',
 cgv:"Le Client peut également régler par virement bancaire : il en fait la demande par e-mail en joignant son devis, et le Vendeur lui transmet ses coordonnées bancaires (RIB). La commande est préparée après réception du virement.",
-mp:MP_NEW};
+mp:MP_NEW,only:"Pour le moment, le règlement se fait uniquement par virement bancaire : cliquez sur « Valider par virement » pour recevoir nos coordonnées bancaires."};
 var PAY_TR={
 de:{on:"BESTÄTIGEN UND ONLINE BEZAHLEN",vir:"PER ÜBERWEISUNG BESTÄTIGEN",
 two:"Zwei Möglichkeiten zur Bestätigung: sofortige Online-Zahlung (Kreditkarte, Klarna…) oder Banküberweisung.",
@@ -890,7 +890,7 @@ l2:"Senden Sie die Nachricht ab: Wir antworten Ihnen mit der Bankverbindung des 
 l3:"Ihre Bestellung wird nach Eingang der Überweisung vorbereitet.",
 fb:'Ihr E-Mail-Programm hat sich nicht geöffnet? Schreiben Sie uns an <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> und fügen Sie Ihr Angebot bei.',
 cgv:"Der Kunde kann auch per Banküberweisung bezahlen: Er fordert diese per E-Mail unter Beifügung seines Angebots an, und der Verkäufer übermittelt ihm seine Bankverbindung. Die Bestellung wird nach Eingang der Überweisung vorbereitet.",
-mp:"Zahlungsart: Online-Zahlung (Stripe) oder Banküberweisung."},
+mp:"Zahlungsart: Online-Zahlung (Stripe) oder Banküberweisung.",only:"Derzeit ist die Zahlung nur per Banküberweisung möglich: Klicken Sie auf „Per Überweisung bestätigen“, um unsere Bankverbindung zu erhalten."},
 en:{on:"CONFIRM AND PAY ONLINE",vir:"CONFIRM BY BANK TRANSFER",
 two:"Two ways to confirm: instant online payment (card, Klarna…) or bank transfer.",
 tt:"Payment by bank transfer",
@@ -900,7 +900,7 @@ l2:"Send the message: we will reply with the company’s bank details.",
 l3:"Your order is prepared as soon as the transfer is received.",
 fb:'Your email app did not open? Write to us at <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> and attach your quote.',
 cgv:"The Customer may also pay by bank transfer: they request it by email, attaching their quote, and the Seller sends them its bank details. The order is prepared once the transfer has been received.",
-mp:"Payment method: online payment (Stripe) or bank transfer."},
+mp:"Payment method: online payment (Stripe) or bank transfer.",only:"For now, payment is by bank transfer only: click “Confirm by bank transfer” to receive our bank details."},
 es:{on:"CONFIRMAR Y PAGAR EN LÍNEA",vir:"CONFIRMAR POR TRANSFERENCIA",
 two:"Dos opciones para confirmar: pago en línea inmediato (tarjeta, Klarna…) o transferencia bancaria.",
 tt:"Pago por transferencia",
@@ -910,7 +910,7 @@ l2:"Envíe el mensaje: le responderemos con los datos bancarios de la empresa.",
 l3:"Su pedido se prepara en cuanto recibimos la transferencia.",
 fb:'¿No se ha abierto su correo? Escríbanos a <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> adjuntando su presupuesto.',
 cgv:"El Cliente también puede pagar por transferencia bancaria: lo solicita por correo electrónico adjuntando su presupuesto y el Vendedor le facilita sus datos bancarios. El pedido se prepara una vez recibida la transferencia.",
-mp:"Método de pago: pago en línea (Stripe) o transferencia bancaria."},
+mp:"Método de pago: pago en línea (Stripe) o transferencia bancaria.",only:"Por el momento, el pago se realiza únicamente por transferencia bancaria: haga clic en «Confirmar por transferencia» para recibir nuestros datos bancarios."},
 nl:{on:"BEVESTIGEN EN ONLINE BETALEN",vir:"BEVESTIGEN PER OVERSCHRIJVING",
 two:"Twee manieren om te bevestigen: directe onlinebetaling (kaart, Klarna…) of bankoverschrijving.",
 tt:"Betalen per overschrijving",
@@ -920,7 +920,7 @@ l2:"Verstuur het bericht: wij antwoorden met de bankgegevens van het bedrijf.",
 l3:"Uw bestelling wordt voorbereid zodra de overschrijving is ontvangen.",
 fb:'Is uw e-mailprogramma niet geopend? Schrijf ons op <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> en voeg uw offerte toe.',
 cgv:"De Klant kan ook per bankoverschrijving betalen: hij vraagt dit per e-mail aan met zijn offerte als bijlage, waarna de Verkoper hem zijn bankgegevens bezorgt. De bestelling wordt voorbereid na ontvangst van de overschrijving.",
-mp:"Betaalmethode: onlinebetaling (Stripe) of bankoverschrijving."}};
+mp:"Betaalmethode: onlinebetaling (Stripe) of bankoverschrijving.",only:"Op dit moment is betalen alleen mogelijk per bankoverschrijving: klik op „Bevestigen per overschrijving” om onze bankgegevens te ontvangen."}};
 var NEW_I18N={};
 Object.keys(PAY_TR).forEach(function(L){var o=NEW_I18N[L]={};
   Object.keys(PAY_FR).forEach(function(k){o[PAY_FR[k]]=PAY_TR[L][k]});
@@ -956,6 +956,13 @@ b.addEventListener("click",function(){var err=orderErr();if(err){warn(err);retur
   var box=$("transfer-box");box.hidden=false;
   setTimeout(function(){window.location.href=url;box.scrollIntoView({behavior:"smooth",block:"start"})},600)});
 var po=document.getElementById("pay-order");if(po)po.addEventListener("click",function(){var tb=$("transfer-box");if(tb)tb.hidden=true});
+/* Paiement en ligne Stripe temporairement désactivé : remettre ONLINE_PAY à true pour le réactiver */
+var ONLINE_PAY=false;
+if(!ONLINE_PAY){if(po)po.style.display="none";
+  [].forEach.call(document.querySelectorAll("p.note"),function(p){var t=p.textContent.replace(/\s+/g," ").trim();
+    if(t===PAY_FR.two)p.textContent=PAY_FR.only;
+    else if(t.indexOf("Le paiement s’effectue directement sur ce site")===0||t.indexOf("Le paiement en ligne porte sur les produits affichés")===0)p.style.display="none"});
+  [].forEach.call(document.querySelectorAll(".pay-foot-label,.pay-foot"),function(e){e.style.display="none"})}
 })();
 I18N.detect=function(){
   var saved=null;try{saved=localStorage.getItem("eln-lang")}catch(e){}
