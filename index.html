@@ -288,6 +288,7 @@ footer a:hover{color:#fff}
 /* Photos produits sur fond blanc : affichées en entier, sans recadrage */
 #grid .card>img{object-fit:contain;background:#fff;padding:10px;border-bottom:1px solid var(--bd)}.row>img{object-fit:contain;background:#fff}
 </style><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script><script defer src="/_vercel/insights/script.js"></script>
+<style>.hstats{display:grid;grid-template-columns:repeat(4,auto);justify-content:start;gap:14px 34px;margin-top:34px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14)}.hstats b{display:block;font:800 2rem/1.1 "Bricolage Grotesque",Figtree,system-ui,sans-serif;color:#fff;letter-spacing:-.02em}.hstats p{display:block;margin:4px 0 0;font-size:.74rem;color:#cdbfb3;text-transform:uppercase;letter-spacing:.07em}@media(max-width:1180px){.hstats{grid-template-columns:repeat(2,max-content);gap:18px 40px}}@media(max-width:600px){.hstats{grid-template-columns:1fr 1fr;gap:18px 20px;margin-top:26px}.hstats b{font-size:1.7rem}}.trust svg{display:block;width:38px;height:38px;padding:8px;border-radius:10px;background:var(--g2);color:var(--o);margin-bottom:10px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}</style>
 </head>
 <body>
 <div class="promo-bar"><span><b>Offre de bienvenue :</b> livraison offerte pour votre première commande</span><a href="#offres">Voir nos prix promotionnels</a></div>
@@ -304,11 +305,12 @@ footer a:hover{color:#fff}
 <div class="hero2"><div class="w hgrid"><div class="htxt"><span class="stamp">Humidité &lt;&nbsp;20&nbsp;%</span>
 <h1>Du bois sec, prêt à brûler.</h1>
 <p>Bûches de feuillus durs, bois compressé, granulés et fagots d’allumage, livrés chez vous.</p>
-<div><a class="btn" href="#boutique">Voir la boutique</a><a class="btn ghost" href="https://wa.me/33644685875" target="_blank" rel="noopener">Écrire sur WhatsApp</a></div></div>
+<div><a class="btn" href="#boutique">Voir la boutique</a><a class="btn ghost" href="https://wa.me/33644685875" target="_blank" rel="noopener">Écrire sur WhatsApp</a></div>
+<div class="hstats"><div><b id="hs-n">98</b><p>Produits en ligne</p></div><div><b>5</b><p>Familles de combustibles</p></div><div><b>5</b><p>Jours de livraison</p></div><div><b>100 %</b><p>Feuillus durs</p></div></div></div>
 <div class="arch"><img class="on" data-im="g2" alt="Bûches empilées au soleil"><img data-im="b25" alt="Palettes de bûches"><img data-im="g1" alt="Stock de bûches en entrepôt"><img data-im="b33" alt="Bûches de 33 cm sur palette"></div></div></div>
 <div class="w"><div class="trust">
-<div><b>100 % feuillus durs</b>Chêne, hêtre, charme, frêne</div><div><b>Bois sec</b>Prêt à brûler immédiatement</div>
-<div><b>Origine France</b>Forêts gérées durablement</div><div><b>Qualité garantie</b>Groupe G1/H1</div></div></div>
+<div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg><b>Livraison offerte</b>Pour votre première commande, selon la zone desservie.</div><div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b>Paiement sécurisé</b>Par virement bancaire ou en ligne, sur une page de paiement sécurisée.</div>
+<div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg><b>Retour sous 14 jours</b>Droit de rétractation pour les particuliers.</div><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><b>Conseil sur WhatsApp</b>Une question sur votre poêle ? Réponse rapide.</div></div></div>
 <div class="blk offers" id="offres"><div class="w"><div class="eb">Offres du moment</div><h2>Profitez de nos offres</h2>
 <div class="ogrid">
 <div class="ocard"><div class="ostat">0 €</div><h3>Livraison offerte</h3><p>Pour votre première commande, la livraison est offerte.</p><small>Selon la zone desservie et les conditions d’accès.</small><a href="#boutique">Commander maintenant</a></div>
@@ -925,6 +927,14 @@ var NEW_I18N={};
 Object.keys(PAY_TR).forEach(function(L){var o=NEW_I18N[L]={};
   Object.keys(PAY_FR).forEach(function(k){o[PAY_FR[k]]=PAY_TR[L][k]});
   TEM.forEach(function(x,i){if(TEM_TR[L][i])o["“"+x.t+"”"]=TEM_Q[L][0]+TEM_TR[L][i]+TEM_Q[L][1]})});
+/* Accueil : chiffres clés et engagements de service */
+(function(){var n=document.getElementById("st-ref"),h=document.getElementById("hs-n");if(n&&h)h.textContent=n.textContent;
+var FR=["Produits en ligne","Familles de combustibles","Jours de livraison","Feuillus durs","Livraison offerte","Pour votre première commande, selon la zone desservie.","Paiement sécurisé","Par virement bancaire ou en ligne, sur une page de paiement sécurisée.","Retour sous 14 jours","Droit de rétractation pour les particuliers.","Conseil sur WhatsApp","Une question sur votre poêle ? Réponse rapide."],
+T={de:["Produkte online","Brennstoffarten","Tage Lieferzeit","Hartholz","Kostenlose Lieferung","Für Ihre erste Bestellung, je nach Liefergebiet.","Sichere Zahlung","Per Banküberweisung oder online über eine sichere Zahlungsseite.","14 Tage Rückgaberecht","Widerrufsrecht für Privatkunden.","Beratung per WhatsApp","Eine Frage zu Ihrem Ofen? Schnelle Antwort."],
+en:["Products online","Fuel families","Days to deliver","Hardwood","Free delivery","On your first order, depending on the delivery area.","Secure payment","By bank transfer or online, on a secure payment page.","14-day returns","Right of withdrawal for private customers.","Advice on WhatsApp","A question about your stove? Quick reply."],
+es:["Productos en línea","Familias de combustibles","Días de entrega","Frondosas duras","Entrega gratuita","En su primer pedido, según la zona de reparto.","Pago seguro","Por transferencia bancaria o en línea, en una página de pago segura.","Devolución en 14 días","Derecho de desistimiento para particulares.","Asesoramiento por WhatsApp","¿Una pregunta sobre su estufa? Respuesta rápida."],
+nl:["Producten online","Soorten brandstof","Dagen levertijd","Hardhout","Gratis levering","Bij uw eerste bestelling, afhankelijk van het leveringsgebied.","Veilig betalen","Per bankoverschrijving of online, via een beveiligde betaalpagina.","14 dagen retour","Herroepingsrecht voor particulieren.","Advies via WhatsApp","Een vraag over uw kachel? Snel antwoord."]};
+Object.keys(T).forEach(function(L){FR.forEach(function(k,i){NEW_I18N[L][k]=T[L][i]})})})();
 /* Ajoute aux dictionnaires la version « paiement en ligne ou virement » des paragraphes qui contenaient l'ancienne mention */
 function MP_FIX(d,L){var oT=d[MP_OLD],nT=PAY_TR[L]&&PAY_TR[L].mp;if(!oT||!nT)return;
   Object.keys(d).forEach(function(k){if(k!==MP_OLD&&k.indexOf(MP_OLD)>=0&&typeof d[k]==="string"&&d[k].indexOf(oT)>=0){var nk=k.replace(MP_OLD,MP_NEW);if(d[nk]===undefined)d[nk]=d[k].replace(oT,nT)}})}
