@@ -584,7 +584,7 @@ function loadStripe(){if(typeof Stripe==="function")return Promise.resolve();if(
 window.addEventListener("load",function(){setTimeout(function(){loadStripe().catch(function(){})},1500)});
 var embedded=null,stripeInstance=null;
 function closeEmbed(){if(embedded){try{embedded.destroy()}catch(e){}embedded=null}var box=$("pay-embed");if(box)box.hidden=true;var ob=$("opdf");if(ob&&ob.parentNode)ob.parentNode.style.display="";var pb=$("pay-order");pb.disabled=false;pb.textContent="VALIDER ET PAYER EN LIGNE";var tb=$("transfer-box");if(tb)tb.hidden=true}
-$("pay-order").addEventListener("click",async function(){var err=orderErr();if(err){warn(err);return}trkCheckout();var button=$("pay-order");button.disabled=true;button.textContent="Préparation du paiement…";try{await loadStripe();var payload={cart:lines().map(function(l){return{id:l[0].id,quantity:l[1],unit:l[0].conv?l[2]:undefined}}),locale:I18N.lang,customer:{name:$("on").value.trim(),email:$("oe").value.trim(),phone:$("ot").value.trim(),address:$("oa").value.trim()}};var responses=await Promise.all([fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),fetch("/api/stripe-config")]);var data=await responses[0].json().catch(function(){return{}});var config=await responses[1].json().catch(function(){return{}});if(!responses[0].ok||!data.clientSecret)throw new Error(data.error||"Paiement indisponible.");if(!responses[1].ok||!config.publishableKey)throw new Error(config.error||"Paiement indisponible.");if(embedded){try{embedded.destroy()}catch(e){}embedded=null}if(!stripeInstance||stripeInstance.__loc!==I18N.lang){stripeInstance=Stripe(config.publishableKey,{locale:I18N.lang});stripeInstance.__loc=I18N.lang}embedded=await stripeInstance.initEmbeddedCheckout({clientSecret:data.clientSecret});$("opdf").parentNode.style.display="none";$("pay-embed").hidden=false;embedded.mount("#checkout");$("pay-embed").scrollIntoView({behavior:"smooth",block:"start"})}catch(error){warn(error.message||"Impossible de préparer le paiement. Réessayez plus tard.");closeEmbed()}});
+$("pay-order").addEventListener("click",async function(){if(window.PAY_PROVIDER==="mollie"&&window.payMollie)return payMollie();var err=orderErr();if(err){warn(err);return}trkCheckout();var button=$("pay-order");button.disabled=true;button.textContent="Préparation du paiement…";try{await loadStripe();var payload={cart:lines().map(function(l){return{id:l[0].id,quantity:l[1],unit:l[0].conv?l[2]:undefined}}),locale:I18N.lang,customer:{name:$("on").value.trim(),email:$("oe").value.trim(),phone:$("ot").value.trim(),address:$("oa").value.trim()}};var responses=await Promise.all([fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),fetch("/api/stripe-config")]);var data=await responses[0].json().catch(function(){return{}});var config=await responses[1].json().catch(function(){return{}});if(!responses[0].ok||!data.clientSecret)throw new Error(data.error||"Paiement indisponible.");if(!responses[1].ok||!config.publishableKey)throw new Error(config.error||"Paiement indisponible.");if(embedded){try{embedded.destroy()}catch(e){}embedded=null}if(!stripeInstance||stripeInstance.__loc!==I18N.lang){stripeInstance=Stripe(config.publishableKey,{locale:I18N.lang});stripeInstance.__loc=I18N.lang}embedded=await stripeInstance.initEmbeddedCheckout({clientSecret:data.clientSecret});$("opdf").parentNode.style.display="none";$("pay-embed").hidden=false;embedded.mount("#checkout");$("pay-embed").scrollIntoView({behavior:"smooth",block:"start"})}catch(error){warn(error.message||"Impossible de préparer le paiement. Réessayez plus tard.");closeEmbed()}});
 $("pay-cancel").addEventListener("click",function(){closeEmbed();warn("Paiement annulé. Votre panier est conservé.")});
 window.addEventListener("hashchange",closeEmbed);
 document.addEventListener("change",function(e){var s=e.target;if(!s.classList||!s.classList.contains("vsel"))return;var card=s.closest(".card"),g=NEWP.filter(function(x){return x.g===card.dataset.g})[0],v=g.v.filter(function(x){return x.id===s.value})[0];card.querySelector(".vinfo").innerHTML=vinfo(v);var vs=card.querySelector(".vsave");if(vs)vs.innerHTML=vsave(g,v);card.querySelector(".pr").innerHTML='<span class="promo">Prix promotionnel</span> '+vprice(v);card.querySelector(".add").dataset.a=v.id});
@@ -879,7 +879,7 @@ l2:"Envoyez le message : nous vous répondons avec le RIB de l’entreprise.",
 l3:"Votre commande est préparée dès réception du virement.",
 fb:'Votre messagerie ne s’est pas ouverte ? Écrivez-nous à <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> en joignant votre devis.',
 cgv:"Le Client peut également régler par virement bancaire : il en fait la demande par e-mail en joignant son devis, et le Vendeur lui transmet ses coordonnées bancaires (RIB). La commande est préparée après réception du virement.",
-mp:MP_NEW,only:"Pour le moment, le règlement se fait uniquement par virement bancaire : cliquez sur « Valider par virement » pour recevoir nos coordonnées bancaires."};
+mp:MP_NEW,fail:"Le paiement n’a pas abouti. Votre panier est conservé : vous pouvez réessayer ou choisir le virement.",only:"Pour le moment, le règlement se fait uniquement par virement bancaire : cliquez sur « Valider par virement » pour recevoir nos coordonnées bancaires."};
 var PAY_TR={
 de:{on:"BESTÄTIGEN UND ONLINE BEZAHLEN",vir:"PER ÜBERWEISUNG BESTÄTIGEN",
 two:"Zwei Möglichkeiten zur Bestätigung: sofortige Online-Zahlung (Kreditkarte, Klarna…) oder Banküberweisung.",
@@ -890,7 +890,7 @@ l2:"Senden Sie die Nachricht ab: Wir antworten Ihnen mit der Bankverbindung des 
 l3:"Ihre Bestellung wird nach Eingang der Überweisung vorbereitet.",
 fb:'Ihr E-Mail-Programm hat sich nicht geöffnet? Schreiben Sie uns an <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> und fügen Sie Ihr Angebot bei.',
 cgv:"Der Kunde kann auch per Banküberweisung bezahlen: Er fordert diese per E-Mail unter Beifügung seines Angebots an, und der Verkäufer übermittelt ihm seine Bankverbindung. Die Bestellung wird nach Eingang der Überweisung vorbereitet.",
-mp:"Zahlungsart: Online-Zahlung (Stripe) oder Banküberweisung.",only:"Derzeit ist die Zahlung nur per Banküberweisung möglich: Klicken Sie auf „Per Überweisung bestätigen“, um unsere Bankverbindung zu erhalten."},
+mp:"Zahlungsart: Online-Zahlung (Stripe) oder Banküberweisung.",fail:"Die Zahlung wurde nicht abgeschlossen. Ihr Warenkorb bleibt erhalten: Sie können es erneut versuchen oder per Überweisung bezahlen.",only:"Derzeit ist die Zahlung nur per Banküberweisung möglich: Klicken Sie auf „Per Überweisung bestätigen“, um unsere Bankverbindung zu erhalten."},
 en:{on:"CONFIRM AND PAY ONLINE",vir:"CONFIRM BY BANK TRANSFER",
 two:"Two ways to confirm: instant online payment (card, Klarna…) or bank transfer.",
 tt:"Payment by bank transfer",
@@ -900,7 +900,7 @@ l2:"Send the message: we will reply with the company’s bank details.",
 l3:"Your order is prepared as soon as the transfer is received.",
 fb:'Your email app did not open? Write to us at <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> and attach your quote.',
 cgv:"The Customer may also pay by bank transfer: they request it by email, attaching their quote, and the Seller sends them its bank details. The order is prepared once the transfer has been received.",
-mp:"Payment method: online payment (Stripe) or bank transfer.",only:"For now, payment is by bank transfer only: click “Confirm by bank transfer” to receive our bank details."},
+mp:"Payment method: online payment (Stripe) or bank transfer.",fail:"The payment was not completed. Your cart has been kept: you can try again or pay by bank transfer.",only:"For now, payment is by bank transfer only: click “Confirm by bank transfer” to receive our bank details."},
 es:{on:"CONFIRMAR Y PAGAR EN LÍNEA",vir:"CONFIRMAR POR TRANSFERENCIA",
 two:"Dos opciones para confirmar: pago en línea inmediato (tarjeta, Klarna…) o transferencia bancaria.",
 tt:"Pago por transferencia",
@@ -910,7 +910,7 @@ l2:"Envíe el mensaje: le responderemos con los datos bancarios de la empresa.",
 l3:"Su pedido se prepara en cuanto recibimos la transferencia.",
 fb:'¿No se ha abierto su correo? Escríbanos a <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> adjuntando su presupuesto.',
 cgv:"El Cliente también puede pagar por transferencia bancaria: lo solicita por correo electrónico adjuntando su presupuesto y el Vendedor le facilita sus datos bancarios. El pedido se prepara una vez recibida la transferencia.",
-mp:"Método de pago: pago en línea (Stripe) o transferencia bancaria.",only:"Por el momento, el pago se realiza únicamente por transferencia bancaria: haga clic en «Confirmar por transferencia» para recibir nuestros datos bancarios."},
+mp:"Método de pago: pago en línea (Stripe) o transferencia bancaria.",fail:"El pago no se ha completado. Su carrito se ha conservado: puede volver a intentarlo o pagar por transferencia.",only:"Por el momento, el pago se realiza únicamente por transferencia bancaria: haga clic en «Confirmar por transferencia» para recibir nuestros datos bancarios."},
 nl:{on:"BEVESTIGEN EN ONLINE BETALEN",vir:"BEVESTIGEN PER OVERSCHRIJVING",
 two:"Twee manieren om te bevestigen: directe onlinebetaling (kaart, Klarna…) of bankoverschrijving.",
 tt:"Betalen per overschrijving",
@@ -920,7 +920,7 @@ l2:"Verstuur het bericht: wij antwoorden met de bankgegevens van het bedrijf.",
 l3:"Uw bestelling wordt voorbereid zodra de overschrijving is ontvangen.",
 fb:'Is uw e-mailprogramma niet geopend? Schrijf ons op <a href="mailto:chauffage@elleninan.fr">chauffage@elleninan.fr</a> en voeg uw offerte toe.',
 cgv:"De Klant kan ook per bankoverschrijving betalen: hij vraagt dit per e-mail aan met zijn offerte als bijlage, waarna de Verkoper hem zijn bankgegevens bezorgt. De bestelling wordt voorbereid na ontvangst van de overschrijving.",
-mp:"Betaalmethode: onlinebetaling (Stripe) of bankoverschrijving.",only:"Op dit moment is betalen alleen mogelijk per bankoverschrijving: klik op „Bevestigen per overschrijving” om onze bankgegevens te ontvangen."}};
+mp:"Betaalmethode: onlinebetaling (Stripe) of bankoverschrijving.",fail:"De betaling is niet voltooid. Uw winkelwagen is bewaard: u kunt het opnieuw proberen of per overschrijving betalen.",only:"Op dit moment is betalen alleen mogelijk per bankoverschrijving: klik op „Bevestigen per overschrijving” om onze bankgegevens te ontvangen."}};
 var NEW_I18N={};
 Object.keys(PAY_TR).forEach(function(L){var o=NEW_I18N[L]={};
   Object.keys(PAY_FR).forEach(function(k){o[PAY_FR[k]]=PAY_TR[L][k]});
@@ -938,6 +938,7 @@ function MP_FIX(d,L){var oT=d[MP_OLD],nT=PAY_TR[L]&&PAY_TR[L].mp;if(!oT||!nT)ret
   RX=new RegExp("^(.+) · (\\d{1,2}) ("+FRM.join("|")+") (\\d{4})$");
   Object.keys(M).forEach(function(L){I18N.rules[L]=(I18N.rules[L]||[]).concat([[RX,function(_,v,d,m,y){return v+" · "+F[L](d,M[L][FRM.indexOf(m)],y)}]])});
 })();
+(function(){var C={de:"Zahlung bestätigt. Referenz: ",en:"Payment confirmed. Reference: ",es:"Pago confirmado. Referencia: ",nl:"Betaling bevestigd. Referentie: "};Object.keys(C).forEach(function(L){I18N.rules[L]=(I18N.rules[L]||[]).concat([[/^Paiement confirmé\. Référence : (.+)$/,function(_,r){return C[L]+r}]])})})();
 /* Paiement par virement : télécharge le devis et ouvre un e-mail prérempli demandant le RIB */
 var MAILT={
 fr:{s:"Commande par virement – Devis ",h:"Bonjour,",b:"Je souhaite régler ma commande par virement bancaire. Pourriez-vous m’envoyer le RIB de l’entreprise ?",a:"Vous trouverez mon devis en pièce jointe.",r:"Référence du devis",t:"Montant total TTC",i:"Articles",n:"Nom",p:"Téléphone",e:"E-mail",d:"Adresse de livraison",c:"Cordialement,"},
@@ -956,13 +957,33 @@ b.addEventListener("click",function(){var err=orderErr();if(err){warn(err);retur
   var box=$("transfer-box");box.hidden=false;
   setTimeout(function(){window.location.href=url;box.scrollIntoView({behavior:"smooth",block:"start"})},600)});
 var po=document.getElementById("pay-order");if(po)po.addEventListener("click",function(){var tb=$("transfer-box");if(tb)tb.hidden=true});
-/* Paiement en ligne Stripe temporairement désactivé : remettre ONLINE_PAY à true pour le réactiver */
-var ONLINE_PAY=false;
-if(!ONLINE_PAY){if(po)po.style.display="none";
-  [].forEach.call(document.querySelectorAll("p.note"),function(p){var t=p.textContent.replace(/\s+/g," ").trim();
-    if(t===PAY_FR.two)p.textContent=PAY_FR.only;
-    else if(t.indexOf("Le paiement s’effectue directement sur ce site")===0||t.indexOf("Le paiement en ligne porte sur les produits affichés")===0)p.style.display="none"});
-  [].forEach.call(document.querySelectorAll(".pay-foot-label,.pay-foot"),function(e){e.style.display="none"})}
+/* Paiement en ligne via Mollie (page de paiement hébergée par Mollie).
+   Tant que la clé Mollie est une clé de test, le bouton n'apparaît qu'avec ?paytest=1 dans l'adresse. */
+window.PAY_PROVIDER="mollie";
+var payNotes=[],payHidden=[];
+[].forEach.call(document.querySelectorAll("p.note"),function(p){var t=p.textContent.replace(/\s+/g," ").trim();
+  if(t===PAY_FR.two)payNotes.push(p);
+  else if(t.indexOf("Le paiement s’effectue directement sur ce site")===0)p.style.display="none";
+  else if(t.indexOf("Le paiement en ligne porte sur les produits affichés")===0)payHidden.push(p)});
+[].push.apply(payHidden,document.querySelectorAll(".pay-foot-label,.pay-foot"));
+function payOffline(){if(po)po.style.display="none";payNotes.forEach(function(p){p.textContent=PAY_FR.only});payHidden.forEach(function(e){e.style.display="none"})}
+function payOnline(){if(po)po.style.display="";payNotes.forEach(function(p){p.textContent=PAY_FR.two});payHidden.forEach(function(e){e.style.display=""})}
+payOffline();
+var payTest=false;try{if(/[?&]paytest=1\b/.test(location.search))sessionStorage.setItem("eln-paytest","1");payTest=sessionStorage.getItem("eln-paytest")==="1"}catch(e){}
+fetch("/api/mollie-payment").then(function(r){return r.json()}).then(function(c){if(c&&c.enabled&&(c.mode==="live"||payTest))payOnline()}).catch(function(){});
+window.payMollie=async function(){var err=orderErr();if(err){warn(err);return}trkCheckout();var b=$("pay-order");b.disabled=true;b.textContent="Préparation du paiement…";
+  try{var r=await fetch("/api/create-mollie-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({cart:lines().map(function(l){return{id:l[0].id,quantity:l[1],unit:l[0].conv?l[2]:undefined}}),locale:I18N.lang,customer:{name:$("on").value.trim(),email:$("oe").value.trim(),phone:$("ot").value.trim(),address:$("oa").value.trim()}})});
+    var d=await r.json().catch(function(){return{}});if(!r.ok||!d.checkoutUrl)throw new Error(d.error||"Paiement indisponible.");
+    try{sessionStorage.setItem("eln-mollie",d.id)}catch(e){}location.href=d.checkoutUrl}
+  catch(e){warn(e.message||"Impossible de préparer le paiement. Réessayez plus tard.");b.disabled=false;b.textContent="VALIDER ET PAYER EN LIGNE"}};
+/* Retour depuis la page de paiement Mollie */
+if(new URLSearchParams(location.search).get("mollie")==="return"){var mid=null;try{mid=sessionStorage.getItem("eln-mollie")}catch(e){}
+  history.replaceState(null,"",location.pathname+location.hash);
+  if(mid)fetch("/api/mollie-payment?id="+encodeURIComponent(mid)).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error);return d})}).then(function(d){
+    if(d.status==="paid"){try{sessionStorage.removeItem("eln-mollie")}catch(e){}trkPurchase(mid);cart={};cartUI();warn("Paiement confirmé. Référence : "+(d.orderReference||"commande"))}
+    else if(d.status==="open"||d.status==="pending"||d.status==="authorized")warn("Le paiement est en attente de confirmation.");
+    else warn("Le paiement n’a pas abouti. Votre panier est conservé : vous pouvez réessayer ou choisir le virement.")})
+  .catch(function(){warn("Le paiement a été transmis, mais sa confirmation n’a pas pu être vérifiée. Consultez votre e-mail ou contactez-nous avant de recommencer.")})}
 })();
 I18N.detect=function(){
   var saved=null;try{saved=localStorage.getItem("eln-lang")}catch(e){}
