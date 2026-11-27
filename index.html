@@ -1064,10 +1064,11 @@ function trkCheckout(){try{var v=Math.round(total()*100)/100;try{sessionStorage.
 function trkPurchase(sid){try{var v=parseFloat(sessionStorage.getItem("eln-last-total"))||0;trk("Purchase",{value:v,currency:"EUR"},{eventID:sid});gConv(v,sid)}catch(e){}}
 /* Balise Google (Google Ads) : chargée uniquement après accord dans le bandeau cookies.
    GADS_SEND_TO = 'AW-XXXXXXXXX/libellé' de l'action de conversion « Achat » (vide = pas d'envoi de conversion). */
-var GTAG_ID="GTM-N4W642XH",GADS_SEND_TO="";
+var GTAG_ID="GTM-N4W642XH",GADS_ID="AW-18597904368",GADS_SEND_TO="AW-18597904368/niwoCJrFm8AdEPD_laRF";
 function gLoad(){if(window.__gtagLoaded)return;window.__gtagLoaded=true;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
   gtag("consent","default",{ad_storage:"granted",ad_user_data:"granted",ad_personalization:"granted",analytics_storage:"granted"});
-  var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtm.js?id="+GTAG_ID;document.head.appendChild(s);gtag("js",new Date())}
+  var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtm.js?id="+GTAG_ID;document.head.appendChild(s);
+  var a=document.createElement("script");a.async=true;a.src="https://www.googletagmanager.com/gtag/js?id="+GADS_ID;document.head.appendChild(a);gtag("js",new Date());gtag("config",GADS_ID)}
 function gConv(v,id){try{if(GADS_SEND_TO&&window.gtag&&ckGet()==="yes")gtag("event","conversion",{send_to:GADS_SEND_TO,value:v,currency:"EUR",transaction_id:String(id||"")})}catch(e){}}
 (function(){var B=document.getElementById("ck-banner");function show(){B.hidden=false}
 document.getElementById("ck-yes").addEventListener("click",function(){ckSet("yes");B.hidden=true;pxLoad();gLoad();if(window.fbq)try{fbq("consent","grant")}catch(e){}});
